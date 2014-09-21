@@ -19,10 +19,10 @@ Let's start with something basic -- drawing an object on the game stage. The mos
 
   create: function () {
 
-    this.sea = this.add.tileSprite(0, 0, 1024, 768, 'sea');
+    this.sea = this.add.tileSprite(0, 0, 800, 600, 'sea');
 
 {leanpub-start-insert}
-    this.bullet = this.add.sprite(512, 400, 'bullet');
+    this.bullet = this.add.sprite(400, 300, 'bullet');
 {leanpub-end-insert}
 
   }
@@ -131,15 +131,15 @@ Now that the sprite sheet is loaded, we can now add it into our game:
 ~~~~~~~~
   create: function() {
 
-    this.sea = this.add.tileSprite(0, 0, 1024, 768, 'sea');
+    this.sea = this.add.tileSprite(0, 0, 800, 600, 'sea');
 
 {leanpub-start-insert}
-    this.enemy = this.add.sprite(512, 300, 'greenEnemy');
+    this.enemy = this.add.sprite(400, 200, 'greenEnemy');
     this.enemy.animations.add('fly', [ 0, 1, 2 ], 20, true);
     this.enemy.play('fly');
 {leanpub-end-insert}
 
-    this.bullet = this.add.sprite(512, 400, 'bullet');
+    this.bullet = this.add.sprite(400, 300, 'bullet');
   }
 ~~~~~~~~
 
