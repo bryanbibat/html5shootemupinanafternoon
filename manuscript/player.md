@@ -21,17 +21,17 @@ Add the following to the `create()` function before the enemy sprite to add our 
 
 {linenos=off,lang="js"}
 ~~~~~~~~
-    this.sea = this.add.tileSprite(0, 0, 1024, 768, 'sea');
+    this.sea = this.add.tileSprite(0, 0, 800, 600, 'sea');
 
 {leanpub-start-insert}
-    this.player = this.add.sprite(400, 650, 'player');
+    this.player = this.add.sprite(400, 550, 'player');
     this.player.anchor.setTo(0.5, 0.5);
     this.player.animations.add('fly', [ 0, 1, 2 ], 20, true);
     this.player.play('fly');
     this.physics.enable(this.player, Phaser.Physics.ARCADE);
 
 {leanpub-end-insert}
-    this.enemy = this.add.sprite(512, 300, 'greenEnemy');
+    this.enemy = this.add.sprite(400, 200, 'greenEnemy');
 ~~~~~~~~
 
 ## Keyboard Movement
@@ -54,7 +54,7 @@ Let's also set the player's initial speed speed as a property of the player obje
 
 {linenos=off,lang="js"}
 ~~~~~~~~
-    this.player = this.add.sprite(400, 650, 'player');
+    this.player = this.add.sprite(400, 550, 'player');
     this.player.anchor.setTo(0.5, 0.5);
     this.player.animations.add('fly', [ 0, 1, 2 ], 20, true);
     this.player.play('fly');
@@ -63,7 +63,7 @@ Let's also set the player's initial speed speed as a property of the player obje
     this.player.speed = 300;
 {leanpub-end-insert}
 
-    this.enemy = this.add.sprite(512, 300, 'greenEnemy');
+    this.enemy = this.add.sprite(400, 200, 'greenEnemy');
 ~~~~~~~~
 
 This will also allow us to have planes with different speeds or "speed up" type of power-ups later.
@@ -111,7 +111,7 @@ Arcade physics also makes it easy to make the edges of the stage act like walls:
     this.player.body.collideWorldBounds = true;
 {leanpub-end-insert}
 
-    this.enemy = this.add.sprite(512, 300, 'greenEnemy');
+    this.enemy = this.add.sprite(400, 300, 'greenEnemy');
 ~~~~~~~~
 
 ## Mouse/Touch Movement
@@ -171,7 +171,7 @@ Let's remove our old bullet code and add new code for creating bullets on the fl
   create: function () {
     ...
 {leanpub-start-delete}
-    this.bullet = this.add.sprite(512, 400, 'bullet');
+    this.bullet = this.add.sprite(400, 300, 'bullet');
     this.bullet.anchor.setTo(0.5, 0.5);
     this.physics.enable(this.bullet, Phaser.Physics.ARCADE);
     this.bullet.body.velocity.y = -400;
@@ -283,7 +283,7 @@ A> Add this to the end of `create()` to [add the text](http://docs.phaser.io/Pha
 A> 
 A> {linenos=off,lang="js"}
 A> ~~~~~~~~
-A>     this.instructions = this.add.text( 510, 600, 
+A>     this.instructions = this.add.text( 400, 500, 
 A>       'Use Arrow Keys to Move, Press Z to Fire\n' + 
 A>       'Tapping/clicking does both', 
 A>       { font: '20px monospace', fill: '#fff', align: 'center' }

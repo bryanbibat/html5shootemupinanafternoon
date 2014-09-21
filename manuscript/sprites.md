@@ -163,14 +163,14 @@ For games, however, most of the time we want the x-y coordinates to be the cente
 
 {linenos=off,lang="js"}
 ~~~~~~~~
-    this.enemy = this.add.sprite(512, 300, 'greenEnemy');
+    this.enemy = this.add.sprite(400, 300, 'greenEnemy');
     this.enemy.animations.add('fly', [ 0, 1, 2 ], 20, true);
     this.enemy.play('fly');
 {leanpub-start-insert}
     this.enemy.anchor.setTo(0.5, 0.5);
 {leanpub-end-insert}
 
-    this.bullet = this.add.sprite(512, 400, 'bullet');
+    this.bullet = this.add.sprite(400, 400, 'bullet');
 {leanpub-start-insert}
     this.bullet.anchor.setTo(0.5, 0.5);
 {leanpub-end-insert}
@@ -273,7 +273,7 @@ Once we put our bullet into the Arcade physics system, we can now set its veloci
 
 {linenos=off,lang="js"}
 ~~~~~~~~
-    this.bullet = this.add.sprite(512, 400, 'bullet');
+    this.bullet = this.add.sprite(400, 400, 'bullet');
     this.bullet.anchor.setTo(0.5, 0.5);
 {leanpub-start-insert}
     this.physics.enable(this.bullet, Phaser.Physics.ARCADE);
@@ -310,7 +310,7 @@ We can view these rectangles by rendering these areas with the debugger. First w
     this.physics.enable(this.enemy, Phaser.Physics.ARCADE);
 {leanpub-end-insert}
 
-    this.bullet = this.add.sprite(512, 400, 'bullet');
+    this.bullet = this.add.sprite(400, 300, 'bullet');
 ~~~~~~~~
 
 Then we add the debugging code under our currently nonexistent `render()` function:
