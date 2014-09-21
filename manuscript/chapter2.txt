@@ -1,0 +1,158 @@
+# Intro to HTML5 Games in Phaser
+
+what is Phaser
+
+link to GSWP
+
+TLDR
+
+  Server 
+  final app
+  basic app template
+
+  run it in a server
+    - XAMP
+    - Python
+
+  livereload
+    - node
+    - ruby
+
+  Text Editor
+    - Sublime Text
+    - Anything that supports JS
+
+Brief runthrough of template
+
+  - tweaked template from /path
+  - explain app.js
+
+Game Loop Pattern
+
+  - why "render" & "update"
+  - (optional) RiceGrowJS
+  - (optional) WDFAC
+  - Update - sprite tileset
+  - empty render
+
+# Sprites, Animation, and Basic Physics
+
+- skip preload / main menu
+
+Draw bullet sprite 
+
+Draw Enemy animation
+
+move bullet via update
+
+Anchor
+
+Add code for collision 
+
+ - Debug mode
+ - overlap code
+ - overlap callback
+ - explosion!!
+ - sfx
+
+# Player Controls
+
+Draw Player
+
+Move using keyboard
+
+Move using touch
+
+- caveat wiggle
+
+Add info text on how to play
+
+Fire Bullets
+
+- fire rate
+- sfx
+- memory consumption...
+
+# Sprite Groups
+
+Convert bullets into Sprite Group
+
+Convert explosion into Sprite Group
+
+Create Sprite Group for Enemy
+
+Randomize Enemy Spawn
+
+Death on Player bump
+-hitbox reduce
+
++ bug sprite vs group
+
+# Health, Score, and Win/Lose Conditions
+
+Tougher Enemies
+
+- damage
+
+Add Score
+
+Lives
+
+  - scaled sprite
+
+  - invulnerable time
+
+  - refactor -> hit by bullet?
+
+Win/Lose Conditions
+
+  - Win when you reach 10000 points
+    - destroy all enemies (boom!)
+
+  - Lose when you don't have any more life
+
+# Expanding our Game
+
+Shooting Enemy Type
+
+  - full copy paste
+
+  rotating + debug
+
+Increasing Difficulty
+
+
+
+The Boss
+
+  - form = 0
+  - form = 1 Approaching, invulnerable
+
+  - form = 2
+    Bounce!
+    Shooting!
+
+  - Big explosion on death!
+
+  - change win condition
+
+# Wrapping Up
+
+
+- What we didn't cover
+
+  - mobile
+    - packaging
+  - other physics engines
+  - and much more!
+
+- Challenge!
+  - different pdf
+
+
+
+ 
+
+
+
+
