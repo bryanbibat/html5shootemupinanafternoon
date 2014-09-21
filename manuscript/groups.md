@@ -101,7 +101,7 @@ Switching from array to group means we need to modify our collision checking cod
 {leanpub-end-insert}
 ~~~~~~~~
 
-Bad news is that there seems to be a bug when comparing "Groups to Sprites" (see if you can notice it) but not in "Sprite to Groups" or "Group to Groups". This shouldn't be a problem since we're only doing the latter two.
+There is a minor quirk when comparing "Groups to Sprites" (see if you can notice it) that is not present in "Sprite to Groups" or "Group to Groups". This shouldn't be a problem since we're only doing the latter two after this section.
 
 ## Enemy Sprite Group
 
@@ -110,7 +110,7 @@ Our game would be boring if we only had one enemy. Let's make a sprite group so 
 {linenos=off,lang="js"}
 ~~~~~~~~
 {leanpub-start-delete}
-    this.enemy = this.add.sprite(512, 300, 'greenEnemy');
+    this.enemy = this.add.sprite(400, 200, 'greenEnemy');
     this.enemy.anchor.setTo(0.5, 0.5);
     this.enemy.animations.add('fly', [ 0, 1, 2 ], 20, true);
     this.enemy.play('fly');
@@ -169,7 +169,7 @@ Add this to the `update()` function:
       this.nextEnemyAt = this.time.now + this.enemyDelay;
       var enemy = this.enemyPool.getFirstExists(false);
       // spawn at a random location top of the screen
-      enemy.reset(this.rnd.integerInRange(20, 1004), 0);
+      enemy.reset(this.rnd.integerInRange(20, 780), 0);
       // also randomize the speed
       enemy.body.velocity.y = this.rnd.integerInRange(30, 60);
       enemy.play('fly');
@@ -249,6 +249,7 @@ Another possible issue is that our hitbox is too big because of our sprite. Let'
 {linenos=off,lang="js"}
 ~~~~~~~~
     this.physics.enable(this.player, Phaser.Physics.ARCADE);
+    this.player.speed = 300;
     this.player.body.collideWorldBounds = true;
 {leanpub-start-insert}
     // 20 x 20 pixel hitbox, centered a little bit higher than the center
@@ -258,7 +259,7 @@ Another possible issue is that our hitbox is too big because of our sprite. Let'
 
 This hitbox is pretty small, but it's still on par with other shoot em ups (some "bullet hell" type games even have a 1 pixel hitbox). Feel free to increase this if you want a challenge.
 
-Use the debug body function if you need to see your sprite's actual hitbox size.
+Use the debug body function if you need to see your sprite's actual hitbox size. Don't forget to remove it afterwards.
 
 {linenos=off,lang="js"}
 ~~~~~~~~
