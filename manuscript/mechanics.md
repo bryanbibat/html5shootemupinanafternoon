@@ -34,34 +34,28 @@ Let's now add the health. Sprites in Phaser have a default health value of 1 but
 
 {linenos=off,lang="js"}
 ~~~~~~~~
-  setupEnemies: function () {
-...
-    this.nextEnemyAt = 0;
-    this.enemyDelay = 1000;
-{leanpub-start-insert}
-    this.enemyInitialHealth = 2;
-{leanpub-end-insert}
-  },
-
-...
-
   spawnEnemies: function () { 
     if (this.nextEnemyAt < this.time.now && this.enemyPool.countDead() > 0) {
       this.nextEnemyAt = this.time.now + this.enemyDelay;
       var enemy = this.enemyPool.getFirstExists(false);
 {leanpub-start-delete}
-      enemy.reset(this.rnd.integerInRange(20, 1004), 0);
+      enemy.reset(this.rnd.integerInRange(20, this.game.width - 20), 0);
 {leanpub-end-insert}
 {leanpub-start-insert}
-      enemy.reset(this.rnd.integerInRange(20, 1004), 0, this.enemyInitialHealth);
+      enemy.reset(
+        this.rnd.integerInRange(20, this.game.width - 20), 0,
+        BasicGame.ENEMY_HEALTH
+      );
 {leanpub-end-insert}
-      enemy.body.velocity.y = this.rnd.integerInRange(30, 60);
+      enemy.body.velocity.y = this.rnd.integerInRange(
+        BasicGame.ENEMY_MIN_Y_VELOCITY, BasicGame.ENEMY_MAX_Y_VELOCITY
+      );
       enemy.play('fly');
     }
   },
 ~~~~~~~~
 
-We could have used `enemy.health = this.enemyInitialHealth` but `reset()` already has an optional parameter that does the same.
+We could have used `enemy.health = BasicGame.ENEMY_HEALTH` but `reset()` already has an optional parameter that does the same.
 
 And finally, let's create a new function to process the damage, centralizing the killing and explosion animation:
 
@@ -74,7 +68,7 @@ And finally, let's create a new function to process the damage, centralizing the
     enemy.kill();
 {leanpub-end-delete}
 {leanpub-start-insert}
-    this.damageEnemy(enemy, 1);
+    this.damageEnemy(enemy, BasicGame.BULLET_DAMAGE);
 {leanpub-end-insert}
   },
 
@@ -85,14 +79,14 @@ And finally, let's create a new function to process the damage, centralizing the
 {leanpub-end-delete}
 {leanpub-start-insert}
     // crashing into an enemy only deals 5 damage
-    this.damageEnemy(enemy, 5);
+    this.damageEnemy(enemy, BasicGame.CRASH_DAMAGE);
 {leanpub-end-insert}
     this.explode(player);
     player.kill();
   },
 ~~~~~~~~
 
-{linenos=on,starting-line-number=191,lang="js"}
+{linenos=on,starting-line-number=203,lang="js"}
 ~~~~~~~~
 {leanpub-start-insert}
   damageEnemy: function (enemy, damage) {
@@ -123,7 +117,7 @@ First set the score rewarded on kill:
     this.enemyPool.setAll('outOfBoundsKill', true);
     this.enemyPool.setAll('checkWorldBounds', true);
 {leanpub-start-insert}
-    this.enemyPool.setAll('reward', 100, false, false, 0, true);
+    this.enemyPool.setAll('reward', BasicGame.ENEMY_REWARD, false, false, 0, true);
 {leanpub-end-insert}
 
     // Set the animation for each sprite
@@ -137,7 +131,9 @@ Next step is to add the `setupText()` code for displaying the starting score:
 {linenos=off,lang="js"}
 ~~~~~~~~
   setupText: function () {
-    this.instructions = this.add.text( 510, 600, 
+    this.instructions = this.add.text(
+      this.game.width / 2, 
+      this.game.height - 100, 
       'Use Arrow Keys to Move, Press Z to Fire\n' + 
       'Tapping/clicking does both', 
       { font: '20px monospace', fill: '#fff', align: 'center' }
@@ -148,7 +144,7 @@ Next step is to add the `setupText()` code for displaying the starting score:
 {leanpub-start-insert}
     this.score = 0;
     this.scoreText = this.add.text(
-      510, 30, '' + this.score, 
+      this.game.width / 2, 30, '' + this.score, 
       { font: '20px monospace', fill: '#fff', align: 'center' }
     );
     this.scoreText.anchor.setTo(0.5, 0.5);
@@ -173,7 +169,7 @@ And then let's add it to our enemy damage/death handler:
   },
 ~~~~~~~~
 
-{linenos=on,starting-line-number=209,lang="js"}
+{linenos=on,starting-line-number=221,lang="js"}
 ~~~~~~~~
 {leanpub-start-insert}
   addToScore: function (score) {
@@ -194,8 +190,7 @@ First, let's create a new sprite group representing our lives at the top right c
 {linenos=off,lang="js"}
 ~~~~~~~~
   create: function () {
-    this.sea = this.add.tileSprite(0, 0, 1024, 768, 'sea')
-
+    this.setupBackground();
     this.setupPlayer();
     this.setupEnemies();
     this.setupBullets();
@@ -211,13 +206,15 @@ First, let's create a new sprite group representing our lives at the top right c
 ...
 ~~~~~~~~
 
-{linenos=on,starting-line-number=113,lang="js"}
+{linenos=on,starting-line-number=118,lang="js"}
 ~~~~~~~~
 {leanpub-start-insert}
   setupPlayerIcons: function () {
     this.lives = this.add.group();
-    for (var i = 0; i < 3; i++) {
-      var life = this.lives.create(924 + (30 * i), 30, 'player');
+    // calculate location of first life icon
+    var firstLifeIconX = this.game.width - 10 - (BasicGame.PLAYER_EXTRA_LIVES * 30);
+    for (var i = 0; i < BasicGame.PLAYER_EXTRA_LIVES; i++) {
+      var life = this.lives.create(firstLifeIconX + (30 * i), 30, 'player');
       life.scale.setTo(0.5, 0.5);
       life.anchor.setTo(0.5, 0.5);
     }
@@ -260,9 +257,9 @@ Then let's modify `playerHit()` to activate "ghost mode" for 3 seconds and ignor
 {leanpub-end-delete}
 {leanpub-start-insert}
     var life = this.lives.getFirstAlive();
-    if (life) {
+    if (life !== null) {
       life.kill();
-      this.ghostUntil = this.time.now + 3000;
+      this.ghostUntil = this.time.now + BasicGame.PLAYER_GHOST_TIME;
       this.player.play('ghost');
     } else {
       this.explode(player);
@@ -300,7 +297,7 @@ Let's implement both to wrap up our prototype.
 
 Create a new function to display the end game message:
 
-{linenos=on,starting-line-number=241,lang="js"}
+{linenos=on,starting-line-number=255,lang="js"}
 ~~~~~~~~
   displayEnd: function (win) {
     // you can't win and lose at the same time
@@ -310,12 +307,12 @@ Create a new function to display the end game message:
 
     var msg = win ? 'You Win!!!' : 'Game Over!';
     this.endText = this.add.text( 
-      510, 320, msg, 
+      this.game.width / 2, this.game.height / 2 - 60, msg, 
       { font: '72px serif', fill: '#fff' }
     );
     this.endText.anchor.setTo(0.5, 0);
 
-    this.showReturn = this.time.now + 2000;
+    this.showReturn = this.time.now + BasicGame.RETURN_MESSAGE_DELAY;
   },
 ~~~~~~~~
 
@@ -339,7 +336,7 @@ Do the same to the `addToScore()` function, but now to destroy all enemies (prev
 {linenos=off,lang="js"}
 ~~~~~~~~
   addToScore: function (score) {
-    this.score += 100;
+    this.score += score;
     this.scoreText.text = this.score;
 {leanpub-start-insert}
     if (this.score >= 2000) {
@@ -349,6 +346,8 @@ Do the same to the `addToScore()` function, but now to destroy all enemies (prev
 {leanpub-end-insert}
   },
 ~~~~~~~~
+
+(No need to set 2000 as a constant because it's only a temporary placeholder. We'll change this value in the last afternoon chapter.)
 
 Let's also display a "back to main menu" message a few seconds after the game ends. In `processDelayedEffects()`:
 
@@ -360,7 +359,7 @@ Let's also display a "back to main menu" message a few seconds after the game en
 {leanpub-start-insert}
     if (this.showReturn && this.time.now > this.showReturn) {
       this.returnText = this.add.text(
-        512, 400, 
+        this.game.width / 2, this.game.height / 2 + 20, 
         'Press Z or Tap Game to go back to Main Menu', 
         { font: '16px sans-serif', fill: '#fff'}
       );
