@@ -136,7 +136,7 @@ We also added a call to [`this.sea.autoScroll()`](http://docs.phaser.io/Phaser.T
 
 Now replace the contents of `update()` with the following:
 
-{linenos=on,starting-line-number=15,lang="js"}
+{linenos=on,starting-line-number=26,lang="js"}
 ~~~~~~~~
   update: function () {
 {leanpub-start-insert}
@@ -205,9 +205,181 @@ Insert the new functions after the `create()` functions:
   },
 ~~~~~~~~
 
-## Reducing Hardcoded Values
+## Reducing Hard-coded Values
 
-### Using Constants
+Apart from long functions, our game also has many hard-coded values and this may affect code readability and maintenance later. 
+
+Eliminating all hard-coded values would be overkill especially for a tutorial like this, so our goal here would be show the ways how we could reduce them.
 
 ### Using Relative Values
 
+A good portion of the hard-coded values are x-y coordinates. Replacing them with values relative to `game.width` and `game.height` will allow us to change the size of the game later with minimal impact to the code.
+
+Let's start with the background tile sprite:
+
+{linenos=off,lang="js"}
+~~~~~~~~
+  setupBackground: function () {
+{leanpub-start-delete}
+    this.sea = this.add.tileSprite(0, 0, 800, 600, 'sea');
+{leanpub-end-delete}
+{leanpub-start-insert}
+    this.sea = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'sea');
+{leanpub-end-insert}
+    this.sea.autoScroll(0, 12);
+  },
+~~~~~~~~
+
+Then we change the player starting location to the bottom middle of the screen:
+
+{linenos=off,lang="js"}
+~~~~~~~~
+  setupPlayer: function () {
+{leanpub-start-delete}
+    this.player = this.add.sprite(400, 550, 'player');
+{leanpub-end-delete}
+{leanpub-start-insert}
+    this.player = this.add.sprite(this.game.width / 2, this.game.height - 50, 'player');
+{leanpub-end-insert}
+    this.player.anchor.setTo(0.5, 0.5);
+~~~~~~~~
+
+Also the instruction text:
+
+{linenos=off,lang="js"}
+~~~~~~~~
+  setupText: function () {
+{leanpub-start-delete}
+    this.instructions = this.add.text( 400, 500, 
+{leanpub-end-delete}
+{leanpub-start-insert}
+    this.instructions = this.add.text(
+      this.game.width / 2, 
+      this.game.height - 100, 
+{leanpub-end-insert}
+      'Use Arrow Keys to Move, Press Z to Fire\n' + 
+~~~~~~~~
+
+And finally the spawn location for the enemies:
+
+{linenos=off,lang="js"}
+~~~~~~~~
+  spawnEnemies: function () {
+    if (this.nextEnemyAt < this.time.now && this.enemyPool.countDead() > 0) {
+      this.nextEnemyAt = this.time.now + this.enemyDelay;
+      var enemy = this.enemyPool.getFirstExists(false);
+      // spawn at a random location top of the screen
+{leanpub-start-delete}
+      enemy.reset(this.rnd.integerInRange(20, 780), 0);
+{leanpub-end-delete}
+{leanpub-start-insert}
+      enemy.reset(this.rnd.integerInRange(20, this.game.width - 20), 0);
+{leanpub-end-insert}
+      // also randomize the speed
+      enemy.body.velocity.y = this.rnd.integerInRange(30, 60);
+~~~~~~~~
+
+### Using Constants
+
+We can also replace many hard-coded values with constants. If you open `boot.js`, you'll see that all of the constants that we need for this workshop are already defined under the `BasicGame` object. All we need to do is to replace the existing code with their respective constants:
+
+{linenos=off,lang="js"}
+~~~~~~~~
+  setupBackground: function () {
+    this.sea = this.add.tileSprite(0, 0, this.game.width, this.game.height, 'sea');
+{leanpub-start-delete}
+    this.sea.autoScroll(0, 12);
+{leanpub-end-delete}
+{leanpub-start-insert}
+    this.sea.autoScroll(0, BasicGame.SEA_Y_SPEED);
+{leanpub-end-insert}
+  },
+~~~~~~~~
+
+{linenos=off,lang="js"}
+~~~~~~~~
+  setupPlayer: function () {
+    ...
+    this.physics.enable(this.player, Phaser.Physics.ARCADE);
+{leanpub-start-delete}
+    this.player.speed = 300;
+{leanpub-end-delete}
+{leanpub-start-insert}
+    this.player.speed = BasicGame.PLAYER_SPEED;
+{leanpub-end-insert}
+    this.player.body.collideWorldBounds = true;
+~~~~~~~~
+
+{linenos=off,lang="js"}
+~~~~~~~~
+  setupEnemies: function () {
+    ...
+    this.nextEnemyAt = 0;
+{leanpub-start-delete}
+    this.enemyDelay = 1000;
+{leanpub-end-delete}
+{leanpub-start-insert}
+    this.enemyDelay = BasicGame.SPAWN_ENEMY_DELAY;
+{leanpub-end-insert}
+  },
+~~~~~~~~
+
+{linenos=off,lang="js"}
+~~~~~~~~
+  setupBullets: function () {
+    ...
+    this.nextShotAt = 0;
+{leanpub-start-delete}
+    this.shotDelay = 100;
+{leanpub-end-delete}
+{leanpub-start-insert}
+    this.shotDelay = BasicGame.SHOT_DELAY;
+{leanpub-end-insert}
+  },
+~~~~~~~~
+
+{linenos=off,lang="js"}
+~~~~~~~~
+  setupText: function () {
+    ...
+    this.instructions.anchor.setTo(0.5, 0.5);
+{leanpub-start-delete}
+    this.instExpire = this.time.now + 10000;
+{leanpub-end-delete}
+{leanpub-start-insert}
+    this.instExpire = this.time.now + BasicGame.INSTRUCTION_EXPIRE;
+{leanpub-end-insert}
+  },
+~~~~~~~~
+
+{linenos=off,lang="js"}
+~~~~~~~~
+  spawnEnemies: function () {
+    if (this.nextEnemyAt < this.time.now && this.enemyPool.countDead() > 0) {
+      ...
+      // also randomize the speed
+{leanpub-start-delete}
+      enemy.body.velocity.y = this.rnd.integerInRange(30, 60);
+{leanpub-end-delete}
+{leanpub-start-insert}
+      enemy.body.velocity.y = this.rnd.integerInRange(
+        BasicGame.ENEMY_MIN_Y_VELOCITY, BasicGame.ENEMY_MAX_Y_VELOCITY
+      );
+{leanpub-end-insert}
+      enemy.play('fly');
+    }
+  },
+~~~~~~~~
+
+{linenos=off,lang="js"}
+~~~~~~~~
+  fire: function () {
+    ...
+{leanpub-start-delete}
+    bullet.body.velocity.y = -500;
+{leanpub-end-delete}
+{leanpub-start-insert}
+    bullet.body.velocity.y = BasicGame.BULLET_Y_VELOCITY;
+{leanpub-end-insert}
+  },
+~~~~~~~~
