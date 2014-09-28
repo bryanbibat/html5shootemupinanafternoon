@@ -42,7 +42,7 @@ Implementing keyboard-based input is straightforward in _Phaser_. Here we begin 
 ~~~~~~~~
     this.bullet.anchor.setTo(0.5, 0.5);
     this.enable(this.bullet,  Phaser.Physics.ARCADE);
-    this.bullet.body.velocity.y = -400;
+    this.bullet.body.velocity.y = -500;
 
 {leanpub-start-insert}
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -174,7 +174,7 @@ Let's remove our old bullet code and add new code for creating bullets on the fl
     this.bullet = this.add.sprite(400, 300, 'bullet');
     this.bullet.anchor.setTo(0.5, 0.5);
     this.physics.enable(this.bullet, Phaser.Physics.ARCADE);
-    this.bullet.body.velocity.y = -400;
+    this.bullet.body.velocity.y = -500;
 {leanpub-end-delete}
 {leanpub-start-insert}
     this.bullets = [];
@@ -199,7 +199,7 @@ We set our fire button to Z or tapping/clicking the screen:
   },
 ~~~~~~~~
 
-Then we create a new function that will fire a slightly faster bullet just above the nose of player's sprite:
+Then we create a new function that will fire a bullet just above the nose of player's sprite:
 
 {linenos=on,starting-line-number=82,lang="js"}
 ~~~~~~~~

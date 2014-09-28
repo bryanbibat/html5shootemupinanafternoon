@@ -277,7 +277,7 @@ Once we put our bullet into the Arcade physics system, we can now set its veloci
     this.bullet.anchor.setTo(0.5, 0.5);
 {leanpub-start-insert}
     this.physics.enable(this.bullet, Phaser.Physics.ARCADE);
-    this.bullet.body.velocity.y = -400;
+    this.bullet.body.velocity.y = -500;
 {leanpub-end-insert}
 
   },
@@ -290,7 +290,7 @@ Once we put our bullet into the Arcade physics system, we can now set its veloci
   },
 ~~~~~~~~
 
-With the physics enabled and velocity set, our sprite's coordinates will now be updated by the `this.physics.update();` call rather than our `update` code. In this case, "`velocity.y = -400`" is 400 pixels per second upward; at 60 frames per second, each `update` call will move the bullet up 6-7 pixels.
+With the physics enabled and velocity set, our sprite's coordinates will now be updated by the `this.physics.update();` call rather than our `update` code. In this case, "`velocity.y = -500`" is 500 pixels per second upward; at 60 frames per second, each `update` call will move the bullet up 8-9 pixels.
 
 ![](images/animation_physics.png)
 
