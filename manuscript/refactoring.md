@@ -203,6 +203,12 @@ Insert the new functions after the `create()` functions:
       this.fire();
     }
   },
+
+  processDelayedEffects: function () {
+    if (this.instructions.exists && this.time.now > this.instExpire) {
+      this.instructions.destroy();
+    }
+  },
 ~~~~~~~~
 
 ## Reducing Hard-coded Values
@@ -266,12 +272,7 @@ And finally the spawn location for the enemies:
 ~~~~~~~~
   spawnEnemies: function () {
     if (this.nextEnemyAt < this.time.now && this.enemyPool.countDead() > 0) {
-{leanpub-start-delete}
       this.nextEnemyAt = this.time.now + this.enemyDelay;
-{leanpub-end-delete}
-{leanpub-start-insert}
-      this.nextEnemyAt = this.time.now + BasicGame.SPAWN_ENEMY_DELAY;
-{leanpub-end-insert}
       var enemy = this.enemyPool.getFirstExists(false);
       // spawn at a random location top of the screen
 {leanpub-start-delete}
@@ -283,6 +284,10 @@ And finally the spawn location for the enemies:
       // also randomize the speed
       enemy.body.velocity.y = this.rnd.integerInRange(30, 60);
 ~~~~~~~~
+
+One advantage of using relative values is that we can change the dimensions of the game without having to change any of the code. For example, here's the game with the height and width flipped at `app.js`:
+
+![](images/portrait.png)
 
 ### Using Constants
 
@@ -304,7 +309,7 @@ We can also replace many hard-coded values with constants. If you open `boot.js`
 {linenos=off,lang="js"}
 ~~~~~~~~
   setupPlayer: function () {
-    ...
+...
     this.physics.enable(this.player, Phaser.Physics.ARCADE);
 {leanpub-start-delete}
     this.player.speed = 300;
@@ -318,7 +323,7 @@ We can also replace many hard-coded values with constants. If you open `boot.js`
 {linenos=off,lang="js"}
 ~~~~~~~~
   setupEnemies: function () {
-    ...
+...
     this.nextEnemyAt = 0;
 {leanpub-start-delete}
     this.enemyDelay = 1000;
@@ -332,7 +337,7 @@ We can also replace many hard-coded values with constants. If you open `boot.js`
 {linenos=off,lang="js"}
 ~~~~~~~~
   setupBullets: function () {
-    ...
+...
     this.nextShotAt = 0;
 {leanpub-start-delete}
     this.shotDelay = 100;
@@ -346,7 +351,7 @@ We can also replace many hard-coded values with constants. If you open `boot.js`
 {linenos=off,lang="js"}
 ~~~~~~~~
   setupText: function () {
-    ...
+...
     this.instructions.anchor.setTo(0.5, 0.5);
 {leanpub-start-delete}
     this.instExpire = this.time.now + 10000;
@@ -361,7 +366,7 @@ We can also replace many hard-coded values with constants. If you open `boot.js`
 ~~~~~~~~
   spawnEnemies: function () {
     if (this.nextEnemyAt < this.time.now && this.enemyPool.countDead() > 0) {
-      ...
+...
       // also randomize the speed
 {leanpub-start-delete}
       enemy.body.velocity.y = this.rnd.integerInRange(30, 60);
@@ -379,12 +384,12 @@ We can also replace many hard-coded values with constants. If you open `boot.js`
 {linenos=off,lang="js"}
 ~~~~~~~~
   fire: function () {
-    ...
+...
 {leanpub-start-delete}
     bullet.body.velocity.y = -500;
 {leanpub-end-delete}
 {leanpub-start-insert}
-    bullet.body.velocity.y = BasicGame.BULLET_Y_VELOCITY;
+    bullet.body.velocity.y = -BasicGame.BULLET_VELOCITY;
 {leanpub-end-insert}
   },
 ~~~~~~~~
