@@ -38,6 +38,7 @@ Let's now add the health. Sprites in Phaser have a default health value of 1 but
     if (this.nextEnemyAt < this.time.now && this.enemyPool.countDead() > 0) {
       this.nextEnemyAt = this.time.now + this.enemyDelay;
       var enemy = this.enemyPool.getFirstExists(false);
+      // spawn at a random location top of the screen
 {leanpub-start-delete}
       enemy.reset(this.rnd.integerInRange(20, this.game.width - 20), 0);
 {leanpub-end-insert}
@@ -139,7 +140,7 @@ Next step is to add the `setupText()` code for displaying the starting score:
       { font: '20px monospace', fill: '#fff', align: 'center' }
     );
     this.instructions.anchor.setTo(0.5, 0.5);
-    this.instExpire = this.time.now + 10000;
+    this.instExpire = this.time.now + BasicGame.INSTRUCTION_EXPIRE;
 
 {leanpub-start-insert}
     this.score = 0;
@@ -250,7 +251,7 @@ Then let's modify `playerHit()` to activate "ghost mode" for 3 seconds and ignor
     }
 {leanpub-end-insert}
     // crashing into an enemy only deals 5 damage
-    this.damageEnemy(enemy, 5);
+    this.damageEnemy(enemy, BasicGame.CRASH_DAMAGE);
 {leanpub-start-delete}
     this.explode(player);
     player.kill();
