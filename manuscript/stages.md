@@ -31,8 +31,7 @@ Then create the group for the sprites (which we will call "shooters" from now on
   setupEnemies: function () {
 
 ...
-    this.enemyDelay = 1000;
-    this.enemyInitialHealth = 2;
+    this.enemyDelay = BasicGame.SPAWN_ENEMY_DELAY;
 
 {leanpub-start-insert}
     this.shooterPool = this.add.group();
@@ -43,7 +42,10 @@ Then create the group for the sprites (which we will call "shooters" from now on
     this.shooterPool.setAll('anchor.y', 0.5);
     this.shooterPool.setAll('outOfBoundsKill', true);
     this.shooterPool.setAll('checkWorldBounds', true);
-    this.shooterPool.setAll('reward', 400, false, false, 0, true);
+    this.shooterPool.setAll(
+      'reward', BasicGame.SHOOTER_REWARD, false, false, 0, true
+    );
+
 
     // Set the animation for each sprite
     this.shooterPool.forEach(function (enemy) {
@@ -55,10 +57,7 @@ Then create the group for the sprites (which we will call "shooters" from now on
     });
 
     // start spawning 5 seconds into the game
-    this.nextShooterAt = this.time.now + 5000;
-    this.shooterDelay = 3000;
-    this.shooterShotDelay = 2000;
-    this.shooterInitialHealth = 5;
+    this.nextShooterAt = this.time.now + Phaser.Timer.SECOND * 5;
 {leanpub-end-insert}
   },
 ~~~~~~~~
@@ -70,29 +69,30 @@ Instead of moving only downwards like the regular enemy, we'll make the shooters
 {linenos=off,lang="js"}
 ~~~~~~~~
   spawnEnemies: function () {
-    if (this.nextEnemyAt < this.time.now && this.enemyPool.countDead() > 0) {
-      this.nextEnemyAt = this.time.now + this.enemyDelay;
-      var enemy = this.enemyPool.getFirstExists(false);
-      enemy.reset(this.rnd.integerInRange(20, 1004), 0, this.enemyInitialHealth);
-      enemy.body.velocity.y = this.rnd.integerInRange(30, 60);
+...
       enemy.play('fly');
     }
 
 {leanpub-start-insert}
     if (this.nextShooterAt < this.time.now && this.shooterPool.countDead() > 0) {
-      this.nextShooterAt = this.time.now + this.shooterDelay;
+      this.nextShooterAt = this.time.now + BasicGame.SPAWN_SHOOTER_DELAY;
       var shooter = this.shooterPool.getFirstExists(false);
 
       // spawn at a random location at the top  
-      shooter.reset(this.rnd.integerInRange(20, 1004), 0,
-                    this.shooterInitialHealth);
+      shooter.reset(
+        this.rnd.integerInRange(20, this.game.width - 20), 0,
+        BasicGame.SHOOTER_HEALTH
+      );
 
       // choose a random target location at the bottom
-      var target = this.rnd.integerInRange(20, 1004);
+      var target = this.rnd.integerInRange(20, this.game.width - 20);
 
       // move to target and rotate the sprite accordingly  
       shooter.rotation = this.physics.arcade.moveToXY(
-        shooter, target, 768, this.rnd.integerInRange(30, 80)
+        shooter, target, this.game.height,
+        this.rnd.integerInRange(
+          BasicGame.SHOOTER_MIN_Y_VELOCITY, BasicGame.SHOOTER_MAX_Y_VELOCITY
+        )
       ) - Math.PI / 2;
 
       shooter.play('fly');
@@ -172,8 +172,6 @@ We've already set the shot timer for the individual shooters in the spawning sec
 {linenos=off,lang="js"}
 ~~~~~~~~
   update: function () {
-    this.sea.tilePosition.y += 0.2;
-
     this.checkCollisions();
     this.spawnEnemies();
 {leanpub-start-insert}
@@ -186,7 +184,7 @@ We've already set the shot timer for the individual shooters in the spawning sec
 
 And the actual function, iterating over the live shooters in the world:
 
-{linenos=on,starting-line-number=222,lang="js"}
+{linenos=on,starting-line-number=243,lang="js"}
 ~~~~~~~~
 {leanpub-start-insert}
   enemyFire: function() {
@@ -289,11 +287,13 @@ Then creating the sprite group:
     this.powerUpPool.setAll('anchor.y', 0.5);
     this.powerUpPool.setAll('outOfBoundsKill', true);
     this.powerUpPool.setAll('checkWorldBounds', true);
-    this.powerUpPool.setAll('reward', 100, false, false, 0, true);
+    this.powerUpPool.setAll(
+      'reward', BasicGame.POWERUP_REWARD, false, false, 0, true
+    );
 {leanpub-end-insert}
 
     this.lives = this.add.group();
-    for (var i = 0; i < 3; i++) {
+...
 ~~~~~~~~
 
 We also add the possibility of spawning a power-up when an enemy dies, 30% chance for regular enemies and 50% for shooters:
@@ -302,17 +302,21 @@ We also add the possibility of spawning a power-up when an enemy dies, 30% chanc
 ~~~~~~~~
   setupEnemies: function () {
 ...
-    this.enemyPool.setAll('checkWorldBounds', true);
-    this.enemyPool.setAll('reward', 100, false, false, 0, true);
+    this.enemyPool.setAll('reward', BasicGame.ENEMY_REWARD, false, false, 0, true);
 {leanpub-start-insert}
-    this.enemyPool.setAll('dropRate', 0.3, false, false, 0, true);
+    this.enemyPool.setAll(
+      'dropRate', BasicGame.ENEMY_DROP_RATE, false, false, 0, true
+    );
 {leanpub-end-insert}
 
 ...
-    this.shooterPool.setAll('checkWorldBounds', true);
-    this.shooterPool.setAll('reward', 400, false, false, 0, true);
+    this.shooterPool.setAll(
+      'reward', BasicGame.SHOOTER_REWARD, false, false, 0, true
+    );
 {leanpub-start-insert}
-    this.shooterPool.setAll('dropRate', 0.5, false, false, 0, true);
+    this.enemyPool.setAll(
+      'dropRate', BasicGame.SHOOTER_DROP_RATE, false, false, 0, true
+    );
 {leanpub-end-insert}
 ~~~~~~~~
 
@@ -336,7 +340,7 @@ Add the call in `damageEnemy()` to a function that spawns power-ups:
 
 Here's the new function for spawning power-ups:
 
-{linenos=on,starting-line-number=387,lang="js"}
+{linenos=on,starting-line-number=413,lang="js"}
 ~~~~~~~~
   spawnPowerUp: function (enemy) {
     if (this.powerUpPool.countDead() === 0 || this.weaponLevel === 5) { 
@@ -405,12 +409,12 @@ A common theme in shoot 'em ups is that your weapon power resets when you die. L
 ~~~~~~~~
   playerHit: function (player, enemy) {
 ...
-    if (life) {
+    if (life !== null) {
       life.kill();
 {leanpub-start-insert}
       this.weaponLevel = 0;
 {leanpub-end-insert}
-      this.ghostUntil = this.time.now + 3000;
+      this.ghostUntil = this.time.now + BasicGame.PLAYER_GHOST_TIME;
 ~~~~~~~~
 
 And finally, the code for implementing the spread shot:
@@ -448,7 +452,7 @@ And finally, the code for implementing the spread shot:
       }
       bullet = this.bulletPool.getFirstExists(false);
       bullet.reset(this.player.x, this.player.y - 20);
-      bullet.body.velocity.y = -500;
+      bullet.body.velocity.y = -BasicGame.BULLET_VELOCITY;
     } else {
       if (this.bulletPool.countDead() < this.weaponLevel * 2) {
         return;
@@ -459,7 +463,7 @@ And finally, the code for implementing the spread shot:
         bullet.reset(this.player.x - (10 + i * 6), this.player.y - 20);
         // the left bullets spread from -95 degrees to -135 degrees
         this.physics.arcade.velocityFromAngle(
-          -95 - i * 10, 500, bullet.body.velocity
+          -95 - i * 10, BasicGame.BULLET_VELOCITY, bullet.body.velocity
         );
 
         bullet = this.bulletPool.getFirstExists(false);
@@ -467,7 +471,7 @@ And finally, the code for implementing the spread shot:
         bullet.reset(this.player.x + (10 + i * 6), this.player.y - 20);
         // the right bullets spread from -85 degrees to -45
         this.physics.arcade.velocityFromAngle(
-          -85 + i * 10, 500, bullet.body.velocity
+          -85 + i * 10, BasicGame.BULLET_VELOCITY, bullet.body.velocity
         );
       }
     }
@@ -519,7 +523,7 @@ Then the `setupEnemies()` code:
 
   setupEnemies: function () {
 ...
-    this.shooterInitialHealth = 5;
+    this.nextShooterAt = this.time.now + Phaser.Timer.SECOND * 5;
 
 {leanpub-start-insert}
     this.bossPool = this.add.group();
@@ -530,8 +534,8 @@ Then the `setupEnemies()` code:
     this.bossPool.setAll('anchor.y', 0.5);
     this.bossPool.setAll('outOfBoundsKill', true);
     this.bossPool.setAll('checkWorldBounds', true);
-    this.bossPool.setAll('reward', 10000, false, false, 0, true);
-    this.bossPool.setAll('dropRate', 0, false, false, 0, true);
+    this.bossPool.setAll('reward', BasicGame.BOSS_REWARD, false, false, 0, true);
+    this.bossPool.setAll('dropRate', BasicGame.BOSS_DROP_RATE, false, false, 0, true);
 
     // Set the animation for each sprite
     this.bossPool.forEach(function (enemy) {
@@ -544,12 +548,11 @@ Then the `setupEnemies()` code:
 
     this.boss = this.bossPool.getTop();
     this.bossApproaching = false;
-    this.bossInitialHealth = 500;
 {leanpub-end-insert}
   },
 ~~~~~~~~
 
-We made a group containing our single boss. This is for two reasons: to put the boss in the proper sprite order - above the enemies, but below the bullets and text; and to deal with the sprite vs sprite collision bug we mentioned way back. We also stored the actual boss in a property for convenience.
+We made a group containing our single boss. This is for two reasons: to put the boss in the proper sprite order - above the enemies, but below the bullets and text; and to step around the sprite vs sprite collision coding quirk we mentioned way back. We also stored the actual boss in a property for convenience.
 
 We then replace what happens when we reach 20,000 points from ending the game to spawning the boss:
 
@@ -577,14 +580,14 @@ We then replace what happens when we reach 20,000 points from ending the game to
 
 Then the new `spawnBoss()` function:
 
-{linenos=on,starting-line-number=436,lang="js"}
+{linenos=on,starting-line-number=461,lang="js"}
 ~~~~~~~~
 {leanpub-start-insert}
   spawnBoss: function () {
     this.bossApproaching = true;
-    this.boss.reset(512, 0, this.bossInitialHealth);
+    this.boss.reset(this.game.width / 2, 0, BasicGame.BOSS_HEALTH);
     this.physics.enable(this.boss, Phaser.Physics.ARCADE);
-    this.boss.body.velocity.y = 15;
+    this.boss.body.velocity.y = BasicGame.BOSS_Y_VELOCITY;
     this.boss.play('fly');
   },
 {leanpub-end-insert}
@@ -602,11 +605,10 @@ The `bossApproaching` flag is there to make the boss invulnerable until it reach
 {leanpub-start-insert}
     if (this.bossApproaching && this.boss.y > 80) {
       this.bossApproaching = false;
-      this.boss.health = 500;
       this.boss.nextShotAt = 0;
 
       this.boss.body.velocity.y = 0;
-      this.boss.body.velocity.x = 200;
+      this.boss.body.velocity.x = BasicGame.BOSS_X_VELOCITY;
       // allow bouncing off world bounds
       this.boss.body.bounce.x = 1;
       this.boss.body.collideWorldBounds = true;
@@ -652,6 +654,8 @@ And modify the `damageEnemy()` to get our game winning condition back:
       this.spawnPowerUp(enemy);
       this.addToScore(enemy.reward);
 {leanpub-start-insert}
+      // We check the sprite key (e.g. 'greenEnemy') to see if the sprite is a boss
+      // For full games, it would be better to set flags on the sprites themselves
       if (enemy.key === 'boss') {
         this.enemyPool.destroy();
         this.shooterPool.destroy();
@@ -726,16 +730,21 @@ Anyway, adding sound effects in Phaser is as easy as adding sprites. First, pre-
 ...
     this.load.spritesheet('player', 'assets/player.png', 64, 64);
 {leanpub-start-insert}
-    this.load.audio('explosion', ['assets/explosion.wav']);
-    this.load.audio('playerExplosion', ['assets/player-explosion.wav']);
-    this.load.audio('enemyFire', ['assets/enemy-fire.wav']);
-    this.load.audio('playerFire', ['assets/player-fire.wav']);
-    this.load.audio('powerUp', ['assets/powerup.wav']);
+    this.load.audio('explosion', ['assets/explosion.ogg', 'assets/explosion.wav']);
+    this.load.audio('playerExplosion',
+                    ['assets/player-explosion.ogg', 'assets/player-explosion.wav']);
+    this.load.audio('enemyFire', 
+                    ['assets/enemy-fire.ogg', 'assets/enemy-fire.wav']);
+    this.load.audio('playerFire', 
+                    ['assets/player-fire.ogg', 'assets/player-fire.wav']);
+    this.load.audio('powerUp', ['assets/powerup.ogg', 'assets/powerup.wav']);
 {leanpub-end-insert}
   },
 ~~~~~~~~
 
-Then initialize the audio, adding a new function `setupAudio()`:
+You can use multiple formats for each loaded sound; _Phaser_ will choose the best format based on the browser. Using Ogg Vorbis (.ogg) and AAC in MP4 (.m4a) should give you the best coverage among browsers. WAV should be avoided due to its file size, and MP3 should be avoided for public projects due to possible licensing issues.
+
+Once loaded, we then initialize the audio, adding a new function `setupAudio()`:
 
 {linenos=off,lang="js"}
 ~~~~~~~~
@@ -799,12 +808,8 @@ Enemy firing:
 {linenos=off,lang="js"}
 ~~~~~~~~
   enemyFire: function() {
-    this.shooterPool.forEachAlive(function (enemy) {
-      if (this.time.now > enemy.nextShotAt && this.enemyBulletPool.countDead() > 0) {
-        var bullet = this.enemyBulletPool.getFirstExists(false)
-        bullet.reset(enemy.x, enemy.y);
-        this.physics.arcade.moveToObject(bullet, this.player, 150);
-        enemy.nextShotAt = this.time.now + this.shooterShotDelay;
+...
+        enemy.nextShotAt = this.time.now + BasicGame.SHOOTER_SHOT_DELAY;
 {leanpub-start-insert}
         this.enemyFireSFX.play();
 {leanpub-end-insert}
@@ -813,9 +818,9 @@ Enemy firing:
 
     if (this.bossApproaching === false && this.boss.alive && 
         this.boss.nextShotAt < this.time.now &&
-        this.enemyBulletPool.countDead() > 9) {
+        this.enemyBulletPool.countDead() >= 10) {
 
-      this.boss.nextShotAt = this.time.now + 1000;
+      this.boss.nextShotAt = this.time.now + BasicGame.BOSS_SHOT_DELAY;
 {leanpub-start-insert}
       this.enemyFireSFX.play();
 {leanpub-end-insert}

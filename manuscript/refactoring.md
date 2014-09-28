@@ -266,7 +266,12 @@ And finally the spawn location for the enemies:
 ~~~~~~~~
   spawnEnemies: function () {
     if (this.nextEnemyAt < this.time.now && this.enemyPool.countDead() > 0) {
+{leanpub-start-delete}
       this.nextEnemyAt = this.time.now + this.enemyDelay;
+{leanpub-end-delete}
+{leanpub-start-insert}
+      this.nextEnemyAt = this.time.now + BasicGame.SPAWN_ENEMY_DELAY;
+{leanpub-end-insert}
       var enemy = this.enemyPool.getFirstExists(false);
       // spawn at a random location top of the screen
 {leanpub-start-delete}
