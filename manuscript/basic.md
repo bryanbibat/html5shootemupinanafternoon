@@ -76,3 +76,19 @@ A>
 A> {leanpub-end-insert}
 A>   create: function () {
 A> ~~~~~~~~
+
+A> ## WebGL lag workaround
+A> 
+A> _Phaser_ automatically detects if your browser supports [WebGL](http://en.wikipedia.org/wiki/WebGL) and will use it if possible.
+A> 
+A> While it usually translates to faster performance on devices with graphics processors, WebGL rendering can be slow and laggy on other machines. If you're noticing significant lag on your browser, you can force _Phaser_ to use plain HTML Canvas by changing the following line in `app.js` :
+A> 
+A> {linenos=off,lang="js"}
+A> ~~~~~~~~
+A> {leanpub-start-delete}
+A>   var game = new Phaser.Game(800, 600, Phaser.AUTO, 'gameContainer');
+A> {leanpub-end-delete}
+A> {leanpub-start-insert}
+A>   var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'gameContainer');
+A> {leanpub-end-insert}
+A> ~~~~~~~~

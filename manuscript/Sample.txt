@@ -4,6 +4,7 @@ basic.md
 sprites.md
 player.md
 groups.md
+refactoring.md
 mechanics.md
 stages.md
 deploy.md

@@ -19,10 +19,10 @@ Let's start with something basic -- drawing an object on the game stage. The mos
 
   create: function () {
 
-    this.sea = this.add.tileSprite(0, 0, 1024, 768, 'sea');
+    this.sea = this.add.tileSprite(0, 0, 800, 600, 'sea');
 
 {leanpub-start-insert}
-    this.bullet = this.add.sprite(512, 400, 'bullet');
+    this.bullet = this.add.sprite(400, 300, 'bullet');
 {leanpub-end-insert}
 
   }
@@ -131,15 +131,15 @@ Now that the sprite sheet is loaded, we can now add it into our game:
 ~~~~~~~~
   create: function() {
 
-    this.sea = this.add.tileSprite(0, 0, 1024, 768, 'sea');
+    this.sea = this.add.tileSprite(0, 0, 800, 600, 'sea');
 
 {leanpub-start-insert}
-    this.enemy = this.add.sprite(512, 300, 'greenEnemy');
+    this.enemy = this.add.sprite(400, 200, 'greenEnemy');
     this.enemy.animations.add('fly', [ 0, 1, 2 ], 20, true);
     this.enemy.play('fly');
 {leanpub-end-insert}
 
-    this.bullet = this.add.sprite(512, 400, 'bullet');
+    this.bullet = this.add.sprite(400, 300, 'bullet');
   }
 ~~~~~~~~
 
@@ -163,14 +163,14 @@ For games, however, most of the time we want the x-y coordinates to be the cente
 
 {linenos=off,lang="js"}
 ~~~~~~~~
-    this.enemy = this.add.sprite(512, 300, 'greenEnemy');
+    this.enemy = this.add.sprite(400, 300, 'greenEnemy');
     this.enemy.animations.add('fly', [ 0, 1, 2 ], 20, true);
     this.enemy.play('fly');
 {leanpub-start-insert}
     this.enemy.anchor.setTo(0.5, 0.5);
 {leanpub-end-insert}
 
-    this.bullet = this.add.sprite(512, 400, 'bullet');
+    this.bullet = this.add.sprite(400, 400, 'bullet');
 {leanpub-start-insert}
     this.bullet.anchor.setTo(0.5, 0.5);
 {leanpub-end-insert}
@@ -263,7 +263,7 @@ A> We'll write some render code later for debugging purposes.
 
 ## Apply Physics
 
-_Phaser_ comes with 3 physics systems, _Arcade_, _Ninja_, and _P2_. Arcade is the default and the simplest, and so we'll use that.
+_Phaser_ comes with 3 physics systems, _Arcade_ and _P2_. Arcade is the default and the simplest, and so we'll use that.
 
 (And besides, the version of _Phaser_ bundled with the basic template, `phaser-arcarde-physics.min.js`, contains _only_ Arcade physics to reduce download file size.)
 
@@ -273,11 +273,11 @@ Once we put our bullet into the Arcade physics system, we can now set its veloci
 
 {linenos=off,lang="js"}
 ~~~~~~~~
-    this.bullet = this.add.sprite(512, 400, 'bullet');
+    this.bullet = this.add.sprite(400, 400, 'bullet');
     this.bullet.anchor.setTo(0.5, 0.5);
 {leanpub-start-insert}
     this.physics.enable(this.bullet, Phaser.Physics.ARCADE);
-    this.bullet.body.velocity.y = -400;
+    this.bullet.body.velocity.y = -500;
 {leanpub-end-insert}
 
   },
@@ -290,7 +290,7 @@ Once we put our bullet into the Arcade physics system, we can now set its veloci
   },
 ~~~~~~~~
 
-With the physics enabled and velocity set, our sprite's coordinates will now be updated by the `this.physics.update();` call rather than our `update` code. In this case, "`velocity.y = -400`" is 400 pixels per second upward; at 60 frames per second, each `update` call will move the bullet up 6-7 pixels.
+With the physics enabled and velocity set, our sprite's coordinates will now be updated by the `this.physics.update();` call rather than our `update` code. In this case, "`velocity.y = -500`" is 500 pixels per second upward; at 60 frames per second, each `update` call will move the bullet up 8-9 pixels.
 
 ![](images/animation_physics.png)
 
@@ -310,7 +310,7 @@ We can view these rectangles by rendering these areas with the debugger. First w
     this.physics.enable(this.enemy, Phaser.Physics.ARCADE);
 {leanpub-end-insert}
 
-    this.bullet = this.add.sprite(512, 400, 'bullet');
+    this.bullet = this.add.sprite(400, 300, 'bullet');
 ~~~~~~~~
 
 Then we add the debugging code under our currently nonexistent `render()` function:
