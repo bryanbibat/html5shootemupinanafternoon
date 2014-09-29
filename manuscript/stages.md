@@ -46,7 +46,6 @@ Then create the group for the sprites (which we will call "shooters" from now on
       'reward', BasicGame.SHOOTER_REWARD, false, false, 0, true
     );
 
-
     // Set the animation for each sprite
     this.shooterPool.forEach(function (enemy) {
       enemy.animations.add('fly', [ 0, 1, 2 ], 20, true);
@@ -58,6 +57,7 @@ Then create the group for the sprites (which we will call "shooters" from now on
 
     // start spawning 5 seconds into the game
     this.nextShooterAt = this.time.now + Phaser.Timer.SECOND * 5;
+    this.shooterDelay = BasicGame.SPAWN_SHOOTER_DELAY;
 {leanpub-end-insert}
   },
 ~~~~~~~~
@@ -75,7 +75,7 @@ Instead of moving only downwards like the regular enemy, we'll make the shooters
 
 {leanpub-start-insert}
     if (this.nextShooterAt < this.time.now && this.shooterPool.countDead() > 0) {
-      this.nextShooterAt = this.time.now + BasicGame.SPAWN_SHOOTER_DELAY;
+      this.nextShooterAt = this.time.now + this.shooterDelay;
       var shooter = this.shooterPool.getFirstExists(false);
 
       // spawn at a random location at the top  
@@ -91,7 +91,7 @@ Instead of moving only downwards like the regular enemy, we'll make the shooters
       shooter.rotation = this.physics.arcade.moveToXY(
         shooter, target, this.game.height,
         this.rnd.integerInRange(
-          BasicGame.SHOOTER_MIN_Y_VELOCITY, BasicGame.SHOOTER_MAX_Y_VELOCITY
+          BasicGame.SHOOTER_MIN_VELOCITY, BasicGame.SHOOTER_MAX_VELOCITY
         )
       ) - Math.PI / 2;
 
@@ -184,7 +184,7 @@ We've already set the shot timer for the individual shooters in the spawning sec
 
 And the actual function, iterating over the live shooters in the world:
 
-{linenos=on,starting-line-number=243,lang="js"}
+{linenos=on,starting-line-number=244,lang="js"}
 ~~~~~~~~
 {leanpub-start-insert}
   enemyFire: function() {
@@ -192,8 +192,10 @@ And the actual function, iterating over the live shooters in the world:
       if (this.time.now > enemy.nextShotAt && this.enemyBulletPool.countDead() > 0) {
         var bullet = this.enemyBulletPool.getFirstExists(false);
         bullet.reset(enemy.x, enemy.y);
-        this.physics.arcade.moveToObject(bullet, this.player, 150);
-        enemy.nextShotAt = this.time.now + this.shooterShotDelay;
+        this.physics.arcade.moveToObject(
+          bullet, this.player, BasicGame.ENEMY_BULLET_VELOCITY
+        );
+        enemy.nextShotAt = this.time.now + BasicGame.SHOOTER_SHOT_DELAY;
       }
     }, this);
   },
@@ -314,7 +316,7 @@ We also add the possibility of spawning a power-up when an enemy dies, 30% chanc
       'reward', BasicGame.SHOOTER_REWARD, false, false, 0, true
     );
 {leanpub-start-insert}
-    this.enemyPool.setAll(
+    this.shooterPool.setAll(
       'dropRate', BasicGame.SHOOTER_DROP_RATE, false, false, 0, true
     );
 {leanpub-end-insert}
@@ -340,7 +342,7 @@ Add the call in `damageEnemy()` to a function that spawns power-ups:
 
 Here's the new function for spawning power-ups:
 
-{linenos=on,starting-line-number=413,lang="js"}
+{linenos=on,starting-line-number=412,lang="js"}
 ~~~~~~~~
   spawnPowerUp: function (enemy) {
     if (this.powerUpPool.countDead() === 0 || this.weaponLevel === 5) { 
@@ -350,7 +352,7 @@ Here's the new function for spawning power-ups:
     if (this.rnd.frac() < enemy.dropRate) {
       var powerUp = this.powerUpPool.getFirstExists(false);
       powerUp.reset(enemy.x, enemy.y);
-      powerUp.body.velocity.y = 100;
+      powerUp.body.velocity.y = BasicGame.POWERUP_VELOCITY;
     }
   },
 ~~~~~~~~
@@ -392,7 +394,7 @@ Adding a collision handler:
 
 And a new function for incrementing the weapon level:
 
-{linenos=on,starting-line-number=364,lang="js"}
+{linenos=on,starting-line-number=389,lang="js"}
 ~~~~~~~~
   playerPowerUp: function (player, powerUp) {
     this.addToScore(powerUp.reward);
@@ -441,7 +443,7 @@ And finally, the code for implementing the spread shot:
     // Reset (revive) the sprite and place it in a new location
     bullet.reset(this.player.x, this.player.y - 20);
 
-    bullet.body.velocity.y = -500;
+    bullet.body.velocity.y = -BasicGame.BULLET_VELOCITY;
 {leanpub-end-delete}
 
 {leanpub-start-insert}
@@ -523,7 +525,7 @@ Then the `setupEnemies()` code:
 
   setupEnemies: function () {
 ...
-    this.nextShooterAt = this.time.now + Phaser.Timer.SECOND * 5;
+    this.shooterDelay = BasicGame.SPAWN_SHOOTER_DELAY;
 
 {leanpub-start-insert}
     this.bossPool = this.add.group();
@@ -535,7 +537,9 @@ Then the `setupEnemies()` code:
     this.bossPool.setAll('outOfBoundsKill', true);
     this.bossPool.setAll('checkWorldBounds', true);
     this.bossPool.setAll('reward', BasicGame.BOSS_REWARD, false, false, 0, true);
-    this.bossPool.setAll('dropRate', BasicGame.BOSS_DROP_RATE, false, false, 0, true);
+    this.bossPool.setAll(
+      'dropRate', BasicGame.BOSS_DROP_RATE, false, false, 0, true
+    );
 
     // Set the animation for each sprite
     this.bossPool.forEach(function (enemy) {
@@ -580,7 +584,7 @@ We then replace what happens when we reach 20,000 points from ending the game to
 
 Then the new `spawnBoss()` function:
 
-{linenos=on,starting-line-number=461,lang="js"}
+{linenos=on,starting-line-number=462,lang="js"}
 ~~~~~~~~
 {leanpub-start-insert}
   spawnBoss: function () {
@@ -681,7 +685,7 @@ We've saved the boss shooting code for last:
         this.boss.nextShotAt < this.time.now &&
         this.enemyBulletPool.countDead() > 9) {
 
-      this.boss.nextShotAt = this.time.now + 1000;
+      this.boss.nextShotAt = this.time.now + BasicGame.BOSS_SHOT_DELAY;
 
       for (var i = 0; i < 5; i++) {
         // process 2 bullets at a time
@@ -692,15 +696,21 @@ We've saved the boss shooting code for last:
 
         if (this.boss.health > 250) {
           // aim directly at the player
-          this.physics.arcade.moveToObject(leftBullet, this.player, 150);
-          this.physics.arcade.moveToObject(rightBullet, this.player, 150);
+          this.physics.arcade.moveToObject(
+            leftBullet, this.player, BasicGame.ENEMY_BULLET_VELOCITY
+          );
+          this.physics.arcade.moveToObject(
+            rightBullet, this.player, BasicGame.ENEMY_BULLET_VELOCITY
+          );
         } else {
           // aim slightly off center of the player
           this.physics.arcade.moveToXY(
-            leftBullet, this.player.x - i * 100, this.player.y, 150
+            leftBullet, this.player.x - i * 100, this.player.y,
+            BasicGame.ENEMY_BULLET_VELOCITY
           );
           this.physics.arcade.moveToXY(
-            rightBullet, this.player.x + i * 100, this.player.y, 150
+            rightBullet, this.player.x + i * 100, this.player.y,
+            BasicGame.ENEMY_BULLET_VELOCITY
           );
         }
       }
