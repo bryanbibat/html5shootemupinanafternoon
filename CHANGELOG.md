@@ -10,6 +10,7 @@
   * Refactoring now includes section on reducing hard-coded values
 * Add OGG audio format.
 * Reduce game resolution to 800x600 due to the high percentage of readers using laptops.
+* Minor tweaks and typo fixes (see git history for details)
 
 ## Pre-October 2014
 
