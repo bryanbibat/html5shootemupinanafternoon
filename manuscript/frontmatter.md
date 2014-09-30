@@ -20,6 +20,8 @@ The positive response from the participants also convinced me to spend some more
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. To view a copy of this license, visit [http://creativecommons.org/licenses/by-nc-sa/3.0/](https://speakerdeck.com/bryanbibat) or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
 
+You can find the complete source of this book at [https://github.com/bryanbibat/html5shootemupinanafternoon](https://github.com/bryanbibat/html5shootemupinanafternoon).
+
 Phaser © 2014 Photon Storm Ltd.
 
 Art assets derived from [SpriteLib](http://www.widgetworx.com/spritelib/), © 2002 Ari Feldman.

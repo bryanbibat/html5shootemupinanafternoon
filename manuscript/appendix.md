@@ -9,7 +9,7 @@ This section is divided into 3 sections. The **Basic** section which provides th
 
 Here's a basic step-by-step tutorial on preparing your system for the workshop:
 
-1. Download the [basic game template](https://github.com/bryanbibat/html5shmup-template/archive/2.0-final.zip) from Github and extract it into a folder.
+1. Download the [basic game template](https://github.com/bryanbibat/html5shmup-template/archive/2.1-v2.zip) from Github and extract it into a folder.
 
     ![](images/extract_code.png)
 
