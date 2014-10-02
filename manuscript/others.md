@@ -72,11 +72,12 @@ We've skipped a lot of Phaser topics. Here are some topics you might want to loo
 * Other _Phaser_ settings (e.g. auto-scale, pause on lose focus)
 * Background music
 * Mobile support (e.g. additional features, packaging to app stores)
-* Other physics systems
+* P2 physics
+* Performance tuning and Debugging
 * Persisting data
 * Interacting with libraries and APIs
 
-Many of these are covered by the official documentation. For the rest, feel free to ask about them at the [official Phaser forum](http://www.html5gamedevs.com/forum/14-phaser/).
+Many of these are covered by the official documentation and by some of [the tutorials on this list](http://www.lessmilk.com/phaser-tutorial/). For the rest, feel free to ask about them at the [official Phaser forum](http://www.html5gamedevs.com/forum/14-phaser/).
 
 We also did not cover how to prepare assets for your game. There are lists of free resources out there like this [wiki page](http://freegamedev.net/wiki/Art_asset_resources) (which also lists where we got our sounds, [OpenGameArt.org](http://opengameart.org/)). You can also Google for assets, but you have to check their licenses and see if you can use them in your games.
 
