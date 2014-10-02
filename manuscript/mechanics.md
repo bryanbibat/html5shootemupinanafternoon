@@ -209,7 +209,6 @@ First, let's create a new sprite group representing our lives at the top right c
 
 {linenos=on,starting-line-number=118,lang="js"}
 ~~~~~~~~
-{leanpub-start-insert}
   setupPlayerIcons: function () {
     this.lives = this.add.group();
     // calculate location of first life icon
@@ -220,9 +219,6 @@ First, let's create a new sprite group representing our lives at the top right c
       life.anchor.setTo(0.5, 0.5);
     }
   },
-{leanpub-end-insert}
-
-  setupText: function () {
 ~~~~~~~~
 
 For the life icons, we just used the player's sprite and scaled it down to half its size by modifying the `scale` property.

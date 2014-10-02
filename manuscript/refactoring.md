@@ -301,7 +301,7 @@ We can also replace many hard-coded values with constants. If you open `boot.js`
     this.sea.autoScroll(0, 12);
 {leanpub-end-delete}
 {leanpub-start-insert}
-    this.sea.autoScroll(0, BasicGame.SEA_Y_SPEED);
+    this.sea.autoScroll(0, BasicGame.SEA_SCROLL_SPEED);
 {leanpub-end-insert}
   },
 ~~~~~~~~

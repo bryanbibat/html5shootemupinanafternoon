@@ -11,7 +11,6 @@ Let's start by deleting the `preload()` function in `game.js`:
 {linenos=off,lang="js"}
 ~~~~~~~~
 BasicGame.Game.prototype = {
-
 {leanpub-start-delete}
   preload: function () {
     this.load.image('sea', 'assets/sea.png');
@@ -23,11 +22,14 @@ BasicGame.Game.prototype = {
     this.load.spritesheet('boss', 'assets/boss.png', 93, 75);
     this.load.spritesheet('explosion', 'assets/explosion.png', 32, 32);
     this.load.spritesheet('player', 'assets/player.png', 64, 64);
-    this.load.audio('explosion', ['assets/explosion.wav']);
-    this.load.audio('playerExplosion', ['assets/player-explosion.wav']);
-    this.load.audio('enemyFire', ['assets/enemy-fire.wav']);
-    this.load.audio('playerFire', ['assets/player-fire.wav']);
-    this.load.audio('powerUp', ['assets/powerup.wav']);
+    this.load.audio('explosion', ['assets/explosion.ogg', 'assets/explosion.wav']);
+    this.load.audio('playerExplosion',
+                    ['assets/player-explosion.ogg', 'assets/player-explosion.wav']);
+    this.load.audio('enemyFire', 
+                    ['assets/enemy-fire.ogg', 'assets/enemy-fire.wav']);
+    this.load.audio('playerFire', 
+                    ['assets/player-fire.ogg', 'assets/player-fire.wav']);
+    this.load.audio('powerUp', ['assets/powerup.ogg', 'assets/powerup.wav']);
   },
 {leanpub-end-delete}
  
@@ -127,6 +129,7 @@ Taking these into account, here are the steps to using Neocities to host your ga
     {linenos=off,lang="js"}
     ~~~~~~~~
       preload: function () {
+        this.load.image('titlepage', 'titlepage.png');
         this.load.image('sea', 'sea.png');
         this.load.image('bullet', 'bullet.png');
         this.load.image('enemyBullet', 'enemy-bullet.png');

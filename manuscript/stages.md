@@ -342,7 +342,7 @@ Add the call in `damageEnemy()` to a function that spawns power-ups:
 
 Here's the new function for spawning power-ups:
 
-{linenos=on,starting-line-number=412,lang="js"}
+{linenos=on,starting-line-number=414,lang="js"}
 ~~~~~~~~
   spawnPowerUp: function (enemy) {
     if (this.powerUpPool.countDead() === 0 || this.weaponLevel === 5) { 
@@ -394,7 +394,7 @@ Adding a collision handler:
 
 And a new function for incrementing the weapon level:
 
-{linenos=on,starting-line-number=389,lang="js"}
+{linenos=on,starting-line-number=391,lang="js"}
 ~~~~~~~~
   playerPowerUp: function (player, powerUp) {
     this.addToScore(powerUp.reward);
@@ -584,7 +584,7 @@ We then replace what happens when we reach 20,000 points from ending the game to
 
 Then the new `spawnBoss()` function:
 
-{linenos=on,starting-line-number=462,lang="js"}
+{linenos=on,starting-line-number=464,lang="js"}
 ~~~~~~~~
 {leanpub-start-insert}
   spawnBoss: function () {
@@ -683,7 +683,7 @@ We've saved the boss shooting code for last:
 {leanpub-start-insert}
     if (this.bossApproaching === false && this.boss.alive && 
         this.boss.nextShotAt < this.time.now &&
-        this.enemyBulletPool.countDead() > 9) {
+        this.enemyBulletPool.countDead() >= 10) {
 
       this.boss.nextShotAt = this.time.now + BasicGame.BOSS_SHOT_DELAY;
 
