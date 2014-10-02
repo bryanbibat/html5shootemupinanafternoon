@@ -62,7 +62,7 @@ You _have_ to use a web server to test your game in this tutorial. The first par
 
 As for the text editor, any editor or IDE with JavaScript support (syntax highlighting, automatic indent/brackets) and can parse non-Windows line endings (i.e. not Notepad) will do. If your preferred editor does not fit these requirements, we suggest downloading the free trial of [Sublime Text](http://www.sublimetext.com/).
 
-Once you have setup your web server and text editor, download the [basic game template with _Phaser_ 2.1](https://github.com/bryanbibat/html5shmup-template/archive/2.1-v2.zip) from Github, extract it to the folder served by the web server, and start coding.
+Once you have setup your web server and text editor, download the [basic game template with _Phaser_ 2.1](https://github.com/bryanbibat/html5shmup-template/archive/2.1-v3.zip) from Github, extract it to the folder served by the web server, and start coding.
 
 More detailed information about setting up your development environment (like choosing a web server) can be found at [_Appendix A: Environment Setup Tutorials_](#appendix-a).
 
