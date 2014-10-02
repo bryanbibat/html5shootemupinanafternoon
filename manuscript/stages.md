@@ -255,6 +255,8 @@ We'll also destroy the shooters and bullets in `addToScore()` upon winning:
 
 ![](images/shooter_complete.png)
 
+{pagebreak}
+
 ## Power-up
 
 Our regular bullet stream is now a lot weaker with the introduction of the shooters. To counter this, let's add a power-up that our players can pickup to get a spread shot.
@@ -498,6 +500,8 @@ One last thing before you test your new spread shot: let's increase the win cond
 
 Note that it's you can run out of available bullet sprites as shown with the bullet gaps above. You can avoid this by increasing the amount of bullet sprites created in the `setupBullets()` function, but it's not really that necessary gameplay-wise.
 
+{pagebreak}
+
 ## Boss Battle
 
 Shooters are nice, but our game wouldn't be a proper shoot 'em up if it didn't have a boss battle.
@@ -727,6 +731,7 @@ Then once the boss's health goes down to 250, the boss now fires 10 bullets at t
 
 ![](images/boss_phase2.png)
 
+{pagebreak}
 
 ## Sound Effects
 
