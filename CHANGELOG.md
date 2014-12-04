@@ -1,5 +1,9 @@
 # Change log
 
+## 04-Dec-2014
+
+* Upgrade to Phaser 2.2.0
+
 ## 01-Oct-2014
 
 * Upgrade to Phaser 2.1.1.
