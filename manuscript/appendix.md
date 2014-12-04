@@ -9,7 +9,7 @@ This section is divided into 3 sections. The **Basic** section which provides th
 
 Here's a basic step-by-step tutorial on preparing your system for the workshop:
 
-1. Download the [basic game template](https://github.com/bryanbibat/html5shmup-template/archive/2.1-v3.zip) from Github and extract it into a folder.
+1. Download the [basic game template](https://github.com/bryanbibat/html5shmup-template/archive/2.2-v1.zip) from Github and extract it into a folder.
 
     ![](images/extract_code.png)
 
@@ -175,19 +175,19 @@ Maybe you've been spending too much time trying to find where you mistyped the c
 
 Regardless of the reason, here are the working code for each chapter of the workshop.
 
-* **Overview of the Starting Code** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/d314e4e13d1d72cd11eefdd78d8b7f50ee9508c7), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/d314e4e13d1d72cd11eefdd78d8b7f50ee9508c7.zip)
-* **Sprites, the Game Loop, and Basic Physics** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/820e4a7b34f17820d16d92ec085e07bf514b2646), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/820e4a7b34f17820d16d92ec085e07bf514b2646.zip)
-* **Player Actions** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/57d5e0de70d28e0a75412b8db2dde42a27e250f6), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/57d5e0de70d28e0a75412b8db2dde42a27e250f6.zip)
-* **Object Groups** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/edbbea67454be602f10d214f09175af4337d7b65), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/edbbea67454be602f10d214f09175af4337d7b65.zip)
-* **Refactoring** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/29331d9d1f498bf3eb566b7b53c0b57db5c492d5), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/29331d9d1f498bf3eb566b7b53c0b57db5c492d5.zip)
-* **Health, Score, and Win/Lose Conditions** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/54b3fef3486c94335a6f54092fdd60a22d4b6de0), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/54b3fef3486c94335a6f54092fdd60a22d4b6de0.zip)
+* **Overview of the Starting Code** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/ee644dba40a5061c49d117998bd499dd92a04bfd), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/ee644dba40a5061c49d117998bd499dd92a04bfd.zip)
+* **Sprites, the Game Loop, and Basic Physics** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/344ac32dcffa76d14aa59a7b9eca01021cb61675), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/344ac32dcffa76d14aa59a7b9eca01021cb61675.zip)
+* **Player Actions** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/3aa418ef34bf4a5c56056b9b4969f0f1cce33ac4), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/3aa418ef34bf4a5c56056b9b4969f0f1cce33ac4.zip)
+* **Object Groups** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/debcac3d763c8bc00666c1aded907a61f8945501), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/debcac3d763c8bc00666c1aded907a61f8945501.zip)
+* **Refactoring** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/477aa0b65f1450d12a411543993e0278217413b5), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/477aa0b65f1450d12a411543993e0278217413b5.zip)
+* **Health, Score, and Win/Lose Conditions** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/b2ec5ef1d0cfb366b3df15145661dc3ed8d6644e), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/b2ec5ef1d0cfb366b3df15145661dc3ed8d6644e.zip)
 * **Expanding the Game** 
-  * **Harder Enemy** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/de293a2e5600fe9e31773cefb9a70fe2b666255c), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/de293a2e5600fe9e31773cefb9a70fe2b666255c.zip)
-  * **Power-up** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/c27c08189f774d0035bf5b915af7bcdc4e013ee5), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/c27c08189f774d0035bf5b915af7bcdc4e013ee5.zip)
-  * **Boss Battle** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/d42ded3af97490b8a514511f23122527f3aaceea), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/d42ded3af97490b8a514511f23122527f3aaceea.zip)
-  * **Sound Effects** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/93478ee63d5761fd3e5e7b38cd172605442475c6), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/93478ee63d5761fd3e5e7b38cd172605442475c6.zip)
+  * **Harder Enemy** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/60e13aca737604822e524a6b5d4a2fffb8b54de6), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/60e13aca737604822e524a6b5d4a2fffb8b54de6.zip)
+  * **Power-up** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/18c536a16a0a27829c59403d187bc83f55224bb2), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/18c536a16a0a27829c59403d187bc83f55224bb2.zip)
+  * **Boss Battle** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/d68b99420b8f76c592278e66df1ebf6600c77bff), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/d68b99420b8f76c592278e66df1ebf6600c77bff.zip)
+  * **Sound Effects** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/37cd365574cf5f27bbcb0ab104dba9394bd411f6), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/37cd365574cf5f27bbcb0ab104dba9394bd411f6.zip)
 * **Wrapping Up**
-  * **Restore original game flow** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/021431c4d4db7be736c83a4fe9c69c560e7e7bfd), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/021431c4d4db7be736c83a4fe9c69c560e7e7bfd.zip)
-  * **Sharing your game** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/ccc532723237b733823fe8ec371f30415b3782c1), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/ccc532723237b733823fe8ec371f30415b3782c1.zip)
+  * **Restore original game flow** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/aa92aba3b0c1a2466093887a01566288fa1ca88f), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/aa92aba3b0c1a2466093887a01566288fa1ca88f.zip)
+  * **Sharing your game** - [Browse in Github](https://github.com/bryanbibat/html5shmup-template/tree/347a18e60766b2c1fc68911aa98faaefa762ffa6), [Download Zip](https://github.com/bryanbibat/html5shmup-template/archive/347a18e60766b2c1fc68911aa98faaefa762ffa6.zip)
 
 To make sure the lazy people don't cheat all the way, we won't provide links to solutions for the [_Challenges_](#challenges).
