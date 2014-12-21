@@ -263,7 +263,7 @@ A> We'll write some render code later for debugging purposes.
 
 ## Apply Physics
 
-_Phaser_ comes with 3 physics systems, _Arcade_ and _P2_. Arcade is the default and the simplest, and so we'll use that.
+_Phaser_ comes with 2 physics systems, _Arcade_ and _P2_. Arcade is the default and the simplest, and so we'll use that.
 
 (And besides, the version of _Phaser_ bundled with the basic template, `phaser-arcarde-physics.min.js`, contains _only_ Arcade physics to reduce download file size.)
 
