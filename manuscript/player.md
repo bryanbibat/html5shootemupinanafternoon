@@ -222,7 +222,7 @@ And finally we modify our collision detection code to iterate over the bullets:
     this.sea.tilePosition.y += 0.2;
 {leanpub-start-delete}
     this.physics.arcade.overlap(
-      this.bullets, this.enemy, this.enemyHit, null, this
+      this.bullet, this.enemy, this.enemyHit, null, this
     );
 {leanpub-end-delete}
 {leanpub-start-insert}
