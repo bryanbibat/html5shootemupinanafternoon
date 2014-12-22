@@ -79,3 +79,8 @@ In addition to Phasers documentation, the following may give you insights on mak
 * [**Game Programming Patterns**](http://gameprogrammingpatterns.com/) - like many game frameworks, Phaser uses the _Game Loop_ pattern at its core.
 * [**Game Mechanic Explorer**](http://gamemechanicexplorer.com/) - a somewhat short list of game mechanics, all implemented in Phaser.
 
+## Video Walkthrough
+
+Recently found out that this book finally made it into the Leanpub's "Lifetime Number of Copies Sold" bestsellers list. As my holiday gift of thanks to those that bought and downloaded it, I recorded a quick and dirty video walkthrough of the main chapters of the book. If you prefer watching the programming lessons in HD video (even when they are taught by a slightly drunk non-native English speaking guy), you're in luck.
+
+If you purchased or downloaded the book, you should be able to download the videos (all 600MB+ of them) via the "Extras" zip link on your [Leanpub dashboard](https://leanpub.com/dashboard). If you're reading this online or want to watch in lower resolution, you can also [watch the videos on YouTube](https://www.youtube.com/playlist?list=PL0mVjsUoElSGbxaNmkOW6ZxwPcQm-_hwl).
