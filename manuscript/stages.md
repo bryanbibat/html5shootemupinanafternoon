@@ -698,7 +698,7 @@ We've saved the boss shooting code for last:
         var rightBullet = this.enemyBulletPool.getFirstExists(false);
         rightBullet.reset(this.boss.x + 10 + i * 10, this.boss.y + 20);
 
-        if (this.boss.health > 250) {
+        if (this.boss.health > BasicGame.BOSS_HEALTH / 2) {
           // aim directly at the player
           this.physics.arcade.moveToObject(
             leftBullet, this.player, BasicGame.ENEMY_BULLET_VELOCITY
