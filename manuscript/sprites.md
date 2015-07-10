@@ -6,7 +6,7 @@ In this first part, we'll go over how to draw and move objects on our game.
 
 ### Draw Bullet Sprite 
 
-Let's start with something basic -- drawing an object on the game stage. The most basic object in _Phaser_ is the [_Sprite_](http://docs.phaser.io/Phaser.Sprite.html). So for our first piece of code, let's load then draw a bullet sprite on our game by making the following modifications to `game.js`. (All of the code examples in this tutorial refer to `game.js` unless otherwise noted.)
+Let's start with something basic -- drawing an object on the game stage. The most basic object in _Phaser_ is the [_Sprite_](https://phaser.io/docs/2.3.0/Phaser.Sprite.html). So for our first piece of code, let's load then draw a bullet sprite on our game by making the following modifications to `game.js`. (All of the code examples in this tutorial refer to `game.js` unless otherwise noted.)
 
 {linenos=off,lang="js"}
 ~~~~~~~~
@@ -30,8 +30,8 @@ Let's start with something basic -- drawing an object on the game stage. The mos
 
 We called the following functions:
 
-* [`load.image()`](http://docs.phaser.io/Phaser.Loader.html#image) - loads an image (e.g. `assets/bullet.png`) and assigns it a name (e.g. `bullet`) which we use later.
-* [`add.sprite()`](http://docs.phaser.io/Phaser.GameObjectFactory.html#sprite) - accepts the x-y coordinates of our sprite and the name of the sprite which we assigned in the `load.image()` function.
+* [`load.image()`](https://phaser.io/docs/2.3.0/Phaser.Loader.html#image) - loads an image (e.g. `assets/bullet.png`) and assigns it a name (e.g. `bullet`) which we use later.
+* [`add.sprite()`](https://phaser.io/docs/2.3.0/Phaser.GameObjectFactory.html#sprite) - accepts the x-y coordinates of our sprite and the name of the sprite which we assigned in the `load.image()` function.
 
 ![Bullet sprite added into our game](images/bullet_sprite.png)
 
@@ -47,7 +47,7 @@ However, computer displays do not use Cartesian coordinates _as is_ but instead 
 
 W> ## A note about the _Phaser Examples_
 W>
-W> The biggest difference between the [_Phaser Examples_](http://examples.phaser.io/) and our game template is that the former uses global variables while we're adding [States](http://docs.phaser.io/Phaser.State.html) which encapsulate the logic of our game. This means that you can't copy the code from those examples directly. For example, _01 - load an image_ uses the following syntax:
+W> The biggest difference between the [_Phaser Examples_](http://examples.phaser.io/) and our game template is that the former uses global variables while we're adding [States](https://phaser.io/docs/2.3.0/Phaser.State.html) which encapsulate the logic of our game. This means that you can't copy the code from those examples directly. For example, _01 - load an image_ uses the following syntax:
 W> 
 W> {linenos=off,lang="js"}
 W> ~~~~~~~~
@@ -121,7 +121,7 @@ We first load a sprite sheet, an image containing multiple frames, in the pre-lo
   },
 ~~~~~~~~
 
-Instead of `load.image()`, we used [`load.spritesheet()`](http://docs.phaser.io/Phaser.Loader.html#spritesheet) to load our sprite sheet. The two additional arguments are the width and height of the individual frames. Since we defined `32` for both width and height, _Phaser_ will load the sprite sheet and divide it into individual frames like so:
+Instead of `load.image()`, we used [`load.spritesheet()`](https://phaser.io/docs/2.3.0/Phaser.Loader.html#spritesheet) to load our sprite sheet. The two additional arguments are the width and height of the individual frames. Since we defined `32` for both width and height, _Phaser_ will load the sprite sheet and divide it into individual frames like so:
 
 ![Enemy sprite sheet (magenta refers to the transparent parts of the image)](images/enemy_spritesheet.png)
 
@@ -143,7 +143,7 @@ Now that the sprite sheet is loaded, we can now add it into our game:
   }
 ~~~~~~~~
 
-The [`animations.add()`](http://docs.phaser.io/Phaser.AnimationManager.html#add) function specified the animation: its name, followed by the sequence of frames in an array, followed by the speed of the animation (in frames per second), and a flag telling whether the animation loops or not. So in this piece of code, we defined the `fly` animation that loops the first 3 frames of the green enemy sprite sheet, an animation of the propeller spinning:
+The [`animations.add()`](https://phaser.io/docs/2.3.0/Phaser.AnimationManager.html#add) function specified the animation: its name, followed by the sequence of frames in an array, followed by the speed of the animation (in frames per second), and a flag telling whether the animation loops or not. So in this piece of code, we defined the `fly` animation that loops the first 3 frames of the green enemy sprite sheet, an animation of the propeller spinning:
 
 ![](images/enemy_animation.png)
 
@@ -331,7 +331,7 @@ Then we add the debugging code under our currently nonexistent `render()` functi
 
 ### Collision
 
-Once added to the physics system, checking collision and overlapping is only a matter of calling [the right functions](http://docs.phaser.io/Phaser.Physics.Arcade.html#overlap): 
+Once added to the physics system, checking collision and overlapping is only a matter of calling [the right functions](https://phaser.io/docs/2.3.0/Phaser.Physics.Arcade.html#overlap): 
 
 {linenos=off,lang="js"}
 ~~~~~~~~
@@ -357,7 +357,7 @@ The `overlap()` function requires a callback which will be called in case the ob
 {leanpub-end-insert}
 ~~~~~~~~
 
-Being common situation in games, _Phaser_ provides us with a [`sprite.kill()`](http://docs.phaser.io/Phaser.Sprite.html#kill) function for "killing" sprites. Calling this function both marks the sprite as dead and invisible, effectively removing the sprite from the game. 
+Being common situation in games, _Phaser_ provides us with a [`sprite.kill()`](https://phaser.io/docs/2.3.0/Phaser.Sprite.html#kill) function for "killing" sprites. Calling this function both marks the sprite as dead and invisible, effectively removing the sprite from the game. 
 
 Here's the collision in action:
  
@@ -417,7 +417,7 @@ Then the actual explosion:
 
 Here we used a different way to setup animations. This time we used `animations.add()` with only the name of the animation. Lacking the other arguments, the `boom` animation uses all frames of the sprite sheet, runs at 60 fps, and doesn't loop.
 
-We want to tweak the settings of this animation, so we add them to the [`explosion.play()`](http://docs.phaser.io/Phaser.Sprite.html#play) call as additional arguments:
+We want to tweak the settings of this animation, so we add them to the [`explosion.play()`](https://phaser.io/docs/2.3.0/Phaser.Sprite.html#play) call as additional arguments:
 
 * `15` - set the frames per second
 * `false` - don't loop the animation

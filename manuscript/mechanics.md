@@ -101,7 +101,7 @@ And finally, let's create a new function to process the damage, centralizing the
 {leanpub-end-insert}
 ~~~~~~~~
 
-Using [`damage()`](http://docs.phaser.io/Phaser.Sprite.html#damage) automatically `kill()`s the sprite once its health is reduced to zero. 
+Using [`damage()`](https://phaser.io/docs/2.3.0/Phaser.Sprite.html#damage) automatically `kill()`s the sprite once its health is reduced to zero. 
 
 ![](images/damage_blink.png)
 
@@ -125,7 +125,7 @@ First set the score rewarded on kill:
     this.enemyPool.forEach(function (enemy) {
 ~~~~~~~~
 
-We used the full form of the [`setAll()`](http://docs.phaser.io/Phaser.Group.html#setAll) function. The last four parameters are default, and we only change the last parameter to `true` which forces the function to set the `reward` property even though it isn't there.
+We used the full form of the [`setAll()`](https://phaser.io/docs/2.3.0/Phaser.Group.html#setAll) function. The last four parameters are default, and we only change the last parameter to `true` which forces the function to set the `reward` property even though it isn't there.
 
 Next step is to add the `setupText()` code for displaying the starting score:
 

@@ -1,6 +1,6 @@
 # Afternoon 3: Object Groups
 
-Instead of creating objects on the fly, we can create [_Groups_](http://docs.phaser.io/Phaser.Group.html) where we can use and re-use sprites over and over again.
+Instead of creating objects on the fly, we can create [_Groups_](https://phaser.io/docs/2.3.0/Phaser.Group.html) where we can use and re-use sprites over and over again.
 
 ## Convert Bullets to Sprite Group
 
@@ -77,7 +77,7 @@ Let's move on to the `fire()` function:
   },
 ~~~~~~~~
 
-Here we replaced creating bullets on the fly with [reviving](http://docs.phaser.io/Phaser.Sprite.html#reset) dead bullets in our pool.
+Here we replaced creating bullets on the fly with [reviving](https://phaser.io/docs/2.3.0/Phaser.Sprite.html#reset) dead bullets in our pool.
 
 ### Update collision detection
 
@@ -184,7 +184,7 @@ Like our `bulletPool`, we also store the next time an enemy should spawn.
 
 ![enemy spawn area and movement range in white](images/random.png)
 
-Note that we did not use `Math.random()` to set the random enemy spawn location and speed but instead used the built-in randomizing functions. Either way is fine, but we chose the [built in random number generator](http://docs.phaser.io/Phaser.Game.html#rnd) because it has some additional features that may be useful later (e.g. seeds).
+Note that we did not use `Math.random()` to set the random enemy spawn location and speed but instead used the built-in randomizing functions. Either way is fine, but we chose the [built in random number generator](https://phaser.io/docs/2.3.0/Phaser.Game.html#rnd) because it has some additional features that may be useful later (e.g. seeds).
 
 ## Player Death
 
@@ -244,7 +244,7 @@ You might notice that even though the plane blows up when we crash to another pl
     }
 ~~~~~~~~
 
-Another possible issue is that our hitbox is too big because of our sprite. Let's [lower](http://docs.phaser.io/Phaser.Physics.Arcade.Body.html#setSize) our hitbox accordingly:
+Another possible issue is that our hitbox is too big because of our sprite. Let's [lower](https://phaser.io/docs/2.3.0/Phaser.Physics.Arcade.Body.html#setSize) our hitbox accordingly:
 
 {linenos=off,lang="js"}
 ~~~~~~~~
@@ -360,7 +360,7 @@ A> We mentioned before that the ordering of sprites is determined by the time th
 A> 
 A> ![](images/sprite_order.png)
 A> 
-A> This is done through sprite groups: all objects (sprites, text, and even groups - groups can contain other groups) are added to the game's [`World`](http://docs.phaser.io/Phaser.World.html) by default, a special group in our game. Display order is then determined by iterating over the members of the `World`. 
+A> This is done through sprite groups: all objects (sprites, text, and even groups - groups can contain other groups) are added to the game's [`World`](https://phaser.io/docs/2.3.0/Phaser.World.html) by default, a special group in our game. Display order is then determined by iterating over the members of the `World`. 
 A> 
 A> For example, the order of the contents of `World` in the following scene is:
 A> 

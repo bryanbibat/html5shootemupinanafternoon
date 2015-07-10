@@ -36,7 +36,7 @@ Add the following to the `create()` function before the enemy sprite to add our 
 
 ## Keyboard Movement
 
-Implementing keyboard-based input is straightforward in _Phaser_. Here we begin by using [a convenience function](http://docs.phaser.io/Phaser.Keyboard.html#createCursorKeys) which returns the four arrow keys. 
+Implementing keyboard-based input is straightforward in _Phaser_. Here we begin by using [a convenience function](https://phaser.io/docs/2.3.0/Phaser.Keyboard.html#createCursorKeys) which returns the four arrow keys. 
 
 {linenos=off,lang="js"}
 ~~~~~~~~
@@ -135,7 +135,7 @@ Here's how simple it is to move an object towards the pointer:
 
 ![](images/touch.png)
 
-Based on the object's location and a speed, the Arcade physics function [`moveToPointer()`](http://docs.phaser.io/Phaser.Physics.Arcade.html#moveToPointer) calculates the angle and velocities required to move towards the pointer at the input speed. Calling this function will already modify the x and y velocities of the object, which is exactly what we need in this situation. 
+Based on the object's location and a speed, the Arcade physics function [`moveToPointer()`](https://phaser.io/docs/2.3.0/Phaser.Physics.Arcade.html#moveToPointer) calculates the angle and velocities required to move towards the pointer at the input speed. Calling this function will already modify the x and y velocities of the object, which is exactly what we need in this situation. 
 
 This function will not rotate the sprite, though, so if you need to rotate the sprite accordingly, you can use the return value of the function which is the angle of rotation in radians. We shall see an example of this in a later lesson.
 
@@ -279,7 +279,7 @@ A> ## How To Play message
 A>
 A> We don't have time to code a help screen, so let's just flash the "how to play" instructions in the first 10 seconds of every session.
 A>
-A> Add this to the end of `create()` to [add the text](http://docs.phaser.io/Phaser.GameObjectFactory.html#text):
+A> Add this to the end of `create()` to [add the text](https://phaser.io/docs/2.3.0/Phaser.GameObjectFactory.html#text):
 A> 
 A> {linenos=off,lang="js"}
 A> ~~~~~~~~

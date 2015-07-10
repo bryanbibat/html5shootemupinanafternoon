@@ -106,7 +106,7 @@ Instead of moving only downwards like the regular enemy, we'll make the shooters
 
 ![](images/shooter_paths.png)
 
-The figure above shows the initial spawn and target areas for the shooters; the arrows show possible flight paths. Here we're using [`moveToXY()`](http://docs.phaser.io/Phaser.Physics.Arcade.html#moveToXY), a function similar to `moveToPointer()` which moves the object to a given point in the world.
+The figure above shows the initial spawn and target areas for the shooters; the arrows show possible flight paths. Here we're using [`moveToXY()`](http://phaser.io/docs/2.3.0/Phaser.Physics.Arcade.html#moveToXY), a function similar to `moveToPointer()` which moves the object to a given point in the world.
 
 Both `moveToPointer()` and `moveToXY()` returns the angle towards the target in radians, and we can assign this value to `object.rotation` to rotate our sprite towards the target. But applying the value directly will result in incorrectly oriented shooters:
 

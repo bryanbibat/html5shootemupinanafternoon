@@ -63,7 +63,7 @@ A common problem with coding workshops is that some participants _think_ they ha
 
     Many of the time-related code in our game only uses the current time as reference. This results in incorrect behavior in certain situations (e.g. pausing the game).
 
-    Replace those code with the appropriate [Time](http://docs.phaser.io/Phaser.Time.html) and [Timer](http://docs.phaser.io/Phaser.Timer.html) functions. See the _Time_ section of [_Phaser Examples_](http://examples.phaser.io/) for ideas on how to do this.
+    Replace those code with the appropriate [Time](https://phaser.io/docs/2.3.0/Phaser.Time.html) and [Timer](https://phaser.io/docs/2.3.0/Phaser.Timer.html) functions. See the _Time_ section of [_Phaser Examples_](http://examples.phaser.io/) for ideas on how to do this.
 
 ## What we didn't cover
 

@@ -130,7 +130,7 @@ Then insert the following after `render()`:
   },
 ~~~~~~~~
 
-We also added a call to [`this.sea.autoScroll()`](http://docs.phaser.io/Phaser.TileSprite.html#autoScroll) so that we can remove the `this.sea.tilePosition.y += 0.2` from the `update()` later.
+We also added a call to [`this.sea.autoScroll()`](https://phaser.io/docs/2.3.0/Phaser.TileSprite.html#autoScroll) so that we can remove the `this.sea.tilePosition.y += 0.2` from the `update()` later.
 
 ### Refactoring update
 

@@ -72,7 +72,7 @@ Apart from JS and Math, we suggest that you at least skim through the following 
 
 * [**Getting Started with Phaser**](http://phaser.io/getting-started-js.php) - Phaser's own guide setting up a development environment
 * [**Phaser Examples**](http://examples.phaser.io/) - view demos of Phaser's features.
-* [**Phaser Documentation**](http://docs.phaser.io/) - your typical API docs with link to source.
+* [**Phaser Documentation**](http://phaser.io/docs/) - your typical API docs with link to source.
 
 In addition to Phasers documentation, the following may give you insights on making games in Phaser:
 
