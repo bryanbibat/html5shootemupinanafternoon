@@ -877,4 +877,23 @@ Power-up pickup:
   },
 ~~~~~~~~
 
+Go ahead and play your game to check if the sounds are properly playing.
+
+You might notice that the sound effects are pretty loud especially when you're playing in a quiet room. To wrap up this chapter, let's adjust the game's volume. It accepts a value [between 0 and 1](https://phaser.io/docs/2.3.0/Phaser.SoundManager.html#volume) so let's pick `0.3`:
+
+
+{linenos=off,lang="js"}
+~~~~~~~~
+  setupAudio: function () {
+{leanpub-start-insert}
+    this.sound.volume = 0.3;
+{leanpub-end-insert}
+    this.explosionSFX = this.add.audio('explosion');
+    this.playerExplosionSFX = this.add.audio('playerExplosion');
+    this.enemyFireSFX = this.add.audio('enemyFire');
+    this.playerFireSFX = this.add.audio('playerFire');
+    this.powerUpSFX = this.add.audio('powerUp');
+  },
+~~~~~~~~
+
 And now we're done with the full game. We wrap up the tutorial in the next chapter.
