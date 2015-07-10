@@ -47,7 +47,7 @@ However, computer displays do not use Cartesian coordinates _as is_ but instead 
 
 W> ## A note about the _Phaser Examples_
 W>
-W> The biggest difference between the [_Phaser Examples_](http://examples.phaser.io/) and our game template is that the former uses global variables while we're adding [States](https://phaser.io/docs/2.3.0/Phaser.State.html) which encapsulate the logic of our game. This means that you can't copy the code from those examples directly. For example, _01 - load an image_ uses the following syntax:
+W> The biggest difference between the [_Phaser Examples_](http://phaser.io/examples) and our game template is that the former uses global variables while we're adding [States](https://phaser.io/docs/2.3.0/Phaser.State.html) which encapsulate the logic of our game. This means that you can't copy the code from those examples directly. For example, [_01 - load an image_](http://phaser.io/examples/v2/basics/01-load-an-image) uses the following syntax:
 W> 
 W> {linenos=off,lang="js"}
 W> ~~~~~~~~

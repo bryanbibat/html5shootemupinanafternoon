@@ -58,7 +58,7 @@ If you still wish to quickly introduce basic trigonometry to your students befor
 
 All you need to code in _Phaser_ is a browser that supports HTML5 (e.g. [Chrome](https://www.google.com/intl/en/chrome/browser/), [Firefox](http://www.mozilla.org/en-US/firefox/new/)), a web server, and the text editor of your choice. 
 
-You _have_ to use a web server to test your game in this tutorial. The first part of [_Getting Started With Phaser_](http://www.phaser.io/getting-started-js.php) explains why this is the case.
+You _have_ to use a web server to test your game in this tutorial. The first part of [_Getting Started With Phaser_](http://www.phaser.io/tutorials/getting-started/index) explains why you should do this.
 
 As for the text editor, any editor or IDE with JavaScript support (syntax highlighting, automatic indent/brackets) and can parse non-Windows line endings (i.e. not Notepad) will do. If your preferred editor does not fit these requirements, we suggest downloading the free trial of [Sublime Text](http://www.sublimetext.com/).
 
@@ -71,7 +71,7 @@ More detailed information about setting up your development environment (like ch
 Apart from JS and Math, we suggest that you at least skim through the following to give you an idea about what we are going to do:
 
 * [**Getting Started with Phaser**](http://phaser.io/getting-started-js.php) - Phaser's own guide setting up a development environment
-* [**Phaser Examples**](http://examples.phaser.io/) - view demos of Phaser's features.
+* [**Phaser Examples**](http://phaser.io/examples) - view demos of Phaser's features.
 * [**Phaser Documentation**](http://phaser.io/docs/) - your typical API docs with link to source.
 
 In addition to Phasers documentation, the following may give you insights on making games in Phaser:
