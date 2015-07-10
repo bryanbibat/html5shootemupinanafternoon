@@ -57,13 +57,13 @@ A common problem with coding workshops is that some participants _think_ they ha
 
     There are still places where the code is duplicated 3 or more times. Turn them into functions to reduce the code size.
 
-    You can also try converting some of the game objects into JS objects. The _Tank_ example in [_Phaser Examples_](http://examples.phaser.io/) is way to implement this.
+    You can also try converting some of the game objects into JS objects. The _Tank_ example in [_Phaser Examples_](http://phaser.io/examples) is way to implement this.
 
 * **Convert time-related events to use Phaser's time classes**
 
     Many of the time-related code in our game only uses the current time as reference. This results in incorrect behavior in certain situations (e.g. pausing the game).
 
-    Replace those code with the appropriate [Time](https://phaser.io/docs/2.3.0/Phaser.Time.html) and [Timer](https://phaser.io/docs/2.3.0/Phaser.Timer.html) functions. See the _Time_ section of [_Phaser Examples_](http://examples.phaser.io/) for ideas on how to do this.
+    Replace those code with the appropriate [Time](https://phaser.io/docs/2.3.0/Phaser.Time.html) and [Timer](https://phaser.io/docs/2.3.0/Phaser.Timer.html) functions. See the _Time_ section of [_Phaser Examples_](http://phaser.io/examples) for ideas on how to do this.
 
 ## What we didn't cover
 
