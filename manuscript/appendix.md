@@ -117,7 +117,7 @@ Note that Middleman's Sprockets interface doesn't support audio so `audio_path` 
 
 ## Cloud IDE Setup
 
-Online IDEs like [Codio](https://codio.com/) and [Nitrous.IO](https://www.nitrous.io/) serve as alternative to desktop/laptop-based development. They take away the hassle of having to install additional software on your computer and replace it with the hassle of finding a venue that has reliable internet - this can be a big problem for workshops.
+Online IDEs like [Codio](https://codio.com/) and [Cloud9](https://c9.io/) serve as alternative to desktop/laptop-based development. They take away the hassle of having to install additional software on your computer and replace it with the hassle of finding a venue that has reliable internet - this can be a big problem for workshops.
 
 We'll run through the steps of setting up two types development environment: one using Codio on the basic template, and another using Nitrous.IO on the advanced Ruby template.
 
@@ -136,36 +136,56 @@ We'll run through the steps of setting up two types development environment: one
 
     ![](images/codio_preview.png)
 
-### Nitrous.IO + NodeJS Template
+### Cloud9 + NodeJS Template
 
-1. Sign-up for Nitrous.IO by filling out the form at [https://nitrous.io/users](https://nitrous.io/users).
+1. Sign-up for Cloud9 by filling out the form at [https://c9.io/web/sign-up/free](https://c9.io/web/sign-up/free).
 
-2. At the dashboard, click "New Box". Choose the "Node.js" template, a Region close to you, and click the "Create Box" button. Leave the Github repository blank. 
+2. At the dashboard, click "Create a new workspace". Fill out the details and the Git URL ([https://github.com/bryanbibat/html5shmup-template.git](https://github.com/bryanbibat/html5shmup-template.git)), choose the "Node.js" template, and click the "Create Box" button. Leave the Github repository blank. 
 
-    ![](images/nitrous_create.png)
+    ![](images/cloud9_create.png)
 
-3. Wait until Nitrous.IO finishes creating your project. Once that is done, checkout and setup the Ruby template with the same commands listed in the previous section:
+3. Wait until Cloud9 finishes creating your project. Once that is done, go to the bash console at the bottom and checkout the `javascript` branch then install the required modules:
 
     {linenos=off,lang="text"}
     ~~~~~~~~
-    $ git clone https://github.com/bryanbibat/html5shmup-template.git
-    $ cd html5shmup-template
     $ git checkout javascript
     $ npm install -g grunt-cli
     $ npm install
     ~~~~~~~~
 
-    ![](images/nitrous_setup.png)
+    You can also choose your preferences at the Welcome screen while the installation is in progress.
 
-4. Open `src/js/game/properties.js`, modify the port to 3000, and run `grunt`:
+    ![](images/cloud9_setup.png)
 
-    ![](images/nitrous_server.png)
+4. To view our app, Cloud9 directs traffic to one port and IP address defined by the `PORT` and `IP` env variables respectively. Open `gruntfile.js`, modify the `connect` options accordingly, then run `grunt --force` to start the app and ignore the `grunt-open` error:
 
-5. Click the "Preview" -> "Port 3000" button/link at the header to open your game in a new browser tab.
+    {linenos=off,lang="js"}
+    ~~~~~~~~
+    connect: { 
+      dev: {
+        options: {
+    leanpub-start-delete
+          port: '<%= project.port %>',
+    leanpub-end-delete
+    leanpub-start-insert
+          port: process.env.PORT,
+          hostname: process.env.IP,
+    leanpub-end-insert
+          base: './build'
+        }
+      }
+    },
+    ~~~~~~~~
 
-    ![](images/nitrous_preview.png)
+    ![](images/cloud9_server.png)
 
-You can now edit your files and make your game. After saving, LiveReload will refresh the game automatically.
+5. Open "Preview -> Preview Running Application" to open your game in a new window.
+
+    ![](images/cloud9_preview.png)
+
+    You can also press the "Pop Out Into New Window" button to open the preview in a new tab.
+
+You can now edit your files and make your game. Unfortunately since Cloud9 only opens one port, LiveReload will not refresh the game automatically upon saving.
 
 # Appendix B: Expected Code Per Chapter
 
