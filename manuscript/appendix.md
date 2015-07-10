@@ -5,9 +5,9 @@
 
 This section is divided into 3 sections. The **Basic** section which provides the most basic ways of setting up your development environment for _Phaser_, the **Advanced** section which are for experienced developers who want a more comfortable environment at the price of complexity, and the **Cloud** section where we have tutorials on how to develop without requiring anything other than a browser and a stable internet connection.
 
-A> We're using an unstable _Phaser_ release (2.4-dev) in this book. Ideally, we should be using the stable 2.3 build but unfortunately the official build does not have sprite health included.
-A>
-A> If you've finished this book and you're encountering problems as you're poking around with the _Phaser_ library included in the template, you can try downgrading to [version 2.2.2](https://github.com/photonstorm/phaser/releases/tag/v2.2.2) or wait until the stable 2.4 is released.
+W> We're using an unstable _Phaser_ release (2.4-dev) in this book. Ideally, we should be using the stable 2.3 build but unfortunately the official build does not have sprite health included.
+W>
+W> If you've finished this book and you're encountering problems as you're poking around with the _Phaser_ library included in the template, you can try downgrading to [version 2.2.2](https://github.com/photonstorm/phaser/releases/tag/v2.2.2) or wait until the stable 2.4 is released.
 
 ## Basic Setup
 
@@ -161,7 +161,7 @@ We'll run through the steps of setting up two types development environment: one
 
     ![](images/cloud9_setup.png)
 
-4. To view our app, Cloud9 directs traffic to one port and IP address defined by the `PORT` and `IP` env variables respectively. Open `gruntfile.js`, modify the `connect` options accordingly, then run `grunt --force` to start the app and ignore the `grunt-open` error:
+4. To view our app, Cloud9 directs traffic to one port and IP address defined by the `PORT` and `IP` env variables respectively. Open `gruntfile.js`, modify the `connect` options accordingly:
 
     {linenos=off,lang="js"}
     ~~~~~~~~
@@ -180,6 +180,8 @@ We'll run through the steps of setting up two types development environment: one
       }
     },
     ~~~~~~~~
+
+    Run `grunt --force` to start the app and ignore the `grunt-open` error:
 
     ![](images/cloud9_server.png)
 
