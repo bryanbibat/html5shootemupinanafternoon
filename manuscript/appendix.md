@@ -5,11 +5,15 @@
 
 This section is divided into 3 sections. The **Basic** section which provides the most basic ways of setting up your development environment for _Phaser_, the **Advanced** section which are for experienced developers who want a more comfortable environment at the price of complexity, and the **Cloud** section where we have tutorials on how to develop without requiring anything other than a browser and a stable internet connection.
 
+A> We're using an unstable _Phaser_ release (2.4-dev) in this book. Ideally, we should be using the stable 2.3 build but unfortunately the official build does not have sprite health included.
+A>
+A> If you've finished this book and you're encountering problems as you're poking around with the _Phaser_ library included in the template, you can try downgrading to [version 2.2.2](https://github.com/photonstorm/phaser/releases/tag/v2.2.2) or wait until the stable 2.4 is released.
+
 ## Basic Setup
 
 Here's a basic step-by-step tutorial on preparing your system for the workshop:
 
-1. Download the [basic game template](https://github.com/bryanbibat/html5shmup-template/archive/2.2-v1.zip) from Github and extract it into a folder.
+1. Download the [basic game template](https://github.com/bryanbibat/html5shmup-template/archive/2.4-dev.zip) from Github and extract it into a folder.
 
     ![](images/extract_code.png)
 
