@@ -128,7 +128,7 @@ We'll run through the steps of setting up two types development environment: one
 ### Codio + Basic Template
 
 1. Sign-up for Codio by filling out the form at [https://codio.com/p/signup](https://codio.com/p/signup).
-2. At the dashboard, click "New Project". Click the more options link ("Click here"), choose Import and choose the Default stack with the Git repo being the template, [https://github.com/bryanbibat/html5shmup-template.git](https://github.com/bryanbibat/html5shmup-template.git). Fill out the project name and description then click the "Create" button.
+2. At the dashboard, click "New Project". Click the more options link ("Click here"), choose Import and enter the Git URL [https://github.com/bryanbibat/html5shmup-template.git](https://github.com/bryanbibat/html5shmup-template.git). Fill out the project name and description then click the "Create" button.
 
     ![](images/codio_create.png)
 
