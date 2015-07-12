@@ -1,5 +1,14 @@
 # Change log
 
+## 12-Jul-2015
+
+* The book is now available on Amazon, Kobo, Scribd, Oyster, Inktera, Barnes & Noble, and Gumroad.
+* Upgrade to Phaser 2.4.0-rc1.
+* Fix links to latest Phaser API documentation.
+* Switch from Nitrous.io to Cloud9 due to changes in the former's pricing scheme.
+* Update Codio steps and images.
+* Add one line to adjust sound effect volume.
+
 ## 04-Dec-2014
 
 * Upgrade to Phaser 2.2.0
