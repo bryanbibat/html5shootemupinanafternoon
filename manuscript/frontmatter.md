@@ -22,7 +22,7 @@ This work is licensed under the Creative Commons Attribution-NonCommercial-Share
 
 You can find the complete source of this book at [https://github.com/bryanbibat/html5shootemupinanafternoon](https://github.com/bryanbibat/html5shootemupinanafternoon).
 
-Phaser © 2014 Photon Storm Ltd.
+Phaser © 2013-2015 Photon Storm Ltd.
 
 Art assets derived from [SpriteLib](http://www.widgetworx.com/spritelib/), © 2002 Ari Feldman.
 
